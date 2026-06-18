@@ -1,0 +1,48 @@
+# ── Secrets ──────────────────────────────────────────────────
+.env
+
+# ── Python ───────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# ── Virtual environments ──────────────────────────────────────
+venv/
+.venv/
+env/
+.env/        # this is a FOLDER named .env – different from the .env FILE above
+ENV/
+
+# ── Jupyter ───────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ── Generated data (large, reproducible) ─────────────────────
+data/results/responses.csv
+data/results/evaluation.csv
+
+# Keep the placeholder files so the results/ folder exists in git
+!data/results/.gitkeep
+
+# ── Figures (reproducible from analysis.py) ──────────────────
+figures/*.png
+figures/*.pdf
+!figures/.gitkeep
+
+# ── OS rubbish ───────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── IDE ───────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo

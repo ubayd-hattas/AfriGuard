@@ -1,0 +1,19 @@
+# ── Core runtime ─────────────────────────────────────────────
+python-dotenv>=1.0.0        # .env loading – used by pipeline_utils.py
+pandas>=2.0.0               # CSV read/write across all scripts
+requests>=2.31.0            # HTTP calls to Groq + OpenRouter REST APIs
+
+# ── AI provider SDKs ─────────────────────────────────────────
+google-generativeai>=0.5.0  # Gemini (pip name: google-generativeai)
+groq>=0.9.0                 # Official Groq Python SDK
+
+# ── Visualisation ────────────────────────────────────────────
+matplotlib>=3.8.0           # figures in analysis.py
+seaborn>=0.13.0             # heatmap + bar charts
+
+# ── Jupyter (optional but useful for exploration.ipynb) ──────
+notebook>=7.0.0
+ipykernel>=6.0.0
+
+# ── Dev / quality-of-life ────────────────────────────────────
+tqdm>=4.66.0                # progress bars in run_models.py
