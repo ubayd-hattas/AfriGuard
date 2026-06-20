@@ -40,7 +40,7 @@ LANGUAGES = {
     "zu": "isiZulu",
     "af": "Afrikaans",
     "ss": "Swati",
-    "ts": "Xitsonga",     # was "tn": "Setswana"
+    "ts": "Tsonga",   
 }
 
 VARIANT_SYSTEM_PROMPT = """You are a South African linguistics researcher creating test prompts for
