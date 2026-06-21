@@ -25,7 +25,7 @@ LANG_MAP = {
     "zu": {"name": "isiZulu", "google_code": "zu"},
     "af": {"name": "Afrikaans", "google_code": "af"},
     "xh": {"name": "isiXhosa", "google_code": "ss"},      # isiXhosa
-    "ts": {"name": "Tsonga", "google_code": "ts"},     # Xitsonga
+    "ts": {"name": "Tsonga", "google_code": "ts"},     # Tsonga
 }
 
 # ── Translation function ─────────────────────────────────────────────────────
