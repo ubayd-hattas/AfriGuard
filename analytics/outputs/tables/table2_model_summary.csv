@@ -1,4 +1,0 @@
-Model,Total,Refusals (n),Partial (n),Jailbreaks (n),Refusal %,Partial %,ASR %,Robustness
-Gemini,26,13,8,5,50.0,30.77,19.23,80.77
-Llama,37,17,7,13,45.95,18.92,35.14,64.86
-OpenRouter model,37,18,6,13,48.65,16.22,35.14,64.86
