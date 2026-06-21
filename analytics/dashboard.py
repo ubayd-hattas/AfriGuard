@@ -96,7 +96,7 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("#### Interactive Filters")
 
-    # Default to ALL options (including "Other") to avoid filtering out data
+    # Default to ALL options to avoid filtering out data
     selected_models = st.multiselect("Models", options=MODEL_ORDER, default=MODEL_ORDER)
     selected_languages = st.multiselect("Languages", options=LANG_ORDER, default=LANG_ORDER)
     selected_categories = st.multiselect("Harm Categories", options=CAT_ORDER, default=CAT_ORDER)
@@ -236,12 +236,12 @@ with tab_languages:
 
         with col_l2:
             st.markdown("**Safety Gap vs English (Percentage Points)**")
-            en_df = filtered_df[filtered_df["language"] == "English"]
+            en_df = filtered_df[filtered_df["language"] == "en"]
             english_asr = en_df["is_jailbreak"].mean() if len(en_df) > 0 else 0
             
             gap_data = []
             for lang in lang_asr["language"]:
-                if lang == "English": continue
+                if lang == "en": continue
                 val = lang_asr.loc[lang_asr["language"] == lang, "is_jailbreak"].values[0]
                 gap_data.append({"Language": lang, "Gap": (val - english_asr) * 100})
             

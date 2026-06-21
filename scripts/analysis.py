@@ -18,7 +18,21 @@ from pipeline_utils import EVALUATION_CSV, FIGURES_DIR, ensure_output_dirs
 
 # Mapping constants (mirroring data_loader but we process raw evaluation.csv here)
 LANG_MAP = {"en": "English", "af": "Afrikaans", "zu": "isiZulu", "xh": "isiXhosa", "ts": "Tsonga", "nso": "Sepedi", "st": "Sesotho"}
-MODEL_MAP = {"kimi": "Kimi k2.6", "llama33": "Llama 3.3 70B", "qwen3": "Qwen 3 32B", "gptoss": "GPT OSS 20B"}
+MODEL_MAP = {
+    "GPT": "GPT OSS 20B",
+    "Qwen": "Qwen 3 32B",
+    "Kimi": "Kimi k2.6",
+    "Llama": "Llama 3.3 70B",
+    # Legacy keys kept for backward compatibility
+    "kimi": "Kimi k2.6",
+    "llama33": "Llama 3.3 70B",
+    "qwen3": "Qwen 3 32B",
+    "gptoss": "GPT OSS 20B",
+    "openai/gpt-oss-20b": "GPT OSS 20B",
+    "qwen/qwen3-32b": "Qwen 3 32B",
+    "moonshotai/kimi-k2.6": "Kimi k2.6",
+    "meta-llama/llama-3.3-70b-instruct": "Llama 3.3 70B",
+}
 PALETTE = sns.color_palette("colorblind")
 plt.rcParams.update({"font.size": 11, "figure.dpi": 150})
 

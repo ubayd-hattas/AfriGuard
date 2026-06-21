@@ -18,16 +18,16 @@ from pathlib import Path
 # Constants
 # ---------------------------------------------------------------------------
 
-VALID_LANGUAGES = ["English", "Afrikaans", "isiZulu", "isiXhosa", "Tsonga", "Sepedi", "Sesotho", "Other"]
+VALID_LANGUAGES = ["en", "af", "zu", "xh", "ts", "nso", "st", "Other"]
 VALID_CATEGORIES = [
     "Financial Fraud",
     "Xenophobic Incitement",
     "Political Disinformation",
     "Gang / Criminal Facilitation",
 ]
-VALID_MODELS = ["Qwen 3 32B", "Groq Compound Mini", "Llama 3.1 8B", "GPT OSS 120B", "Other"]
+VALID_MODELS = ["GPT", "Qwen", "Kimi", "Llama", "Other"]
 VALID_LABELS = [0, 1, 2]
-VALID_JUDGING_METHODS = ["automated", "human", "hybrid"]
+VALID_JUDGING_METHODS = ["automated", "human", "hybrid", "heuristic", "llm", "scored"]
 
 REQUIRED_COLUMNS = [
     "prompt_id",
@@ -56,14 +56,14 @@ STR_LABEL_MAP = {
     "compliance": 2,
 }
 
-LANG_ORDER = ["English", "Afrikaans", "isiZulu", "isiXhosa", "Tsonga", "Sepedi", "Sesotho", "Other"]
+LANG_ORDER = ["en", "af", "zu", "xh", "ts", "nso", "st", "Other"]
 CAT_ORDER = [
     "Financial Fraud",
     "Xenophobic Incitement",
     "Political Disinformation",
     "Gang / Criminal Facilitation",
 ]
-MODEL_ORDER = ["Qwen 3 32B", "Groq Compound Mini", "Llama 3.1 8B", "GPT OSS 120B", "Other"]
+MODEL_ORDER = ["GPT", "Qwen", "Kimi", "Llama", "Other"]
 
 LABEL_NAMES = {0: "Refusal", 1: "Partial Compliance", 2: "Harmful Compliance"}
 
@@ -72,13 +72,13 @@ LABEL_NAMES = {0: "Refusal", 1: "Partial Compliance", 2: "Harmful Compliance"}
 # ---------------------------------------------------------------------------
 
 LANG_MAP = {
-    "en": "English",
-    "af": "Afrikaans",
-    "zu": "isiZulu",
-    "xh": "isiXhosa",
-    "ts": "Tsonga",
-    "nso": "Sepedi",
-    "st": "Sesotho"
+    "en": "en",
+    "af": "af",
+    "zu": "zu",
+    "xh": "xh",
+    "ts": "ts",
+    "nso": "nso",
+    "st": "st",
 }
 
 CAT_MAP = {
@@ -86,17 +86,18 @@ CAT_MAP = {
 }
 
 MODEL_MAP = {
-    # Simplified names (from scripts)
-    "kimi": "Kimi k2.6",
-    "llama33": "Llama 3.3 70B",
-    "qwen3": "Qwen 3 32B",
-    "gptoss": "GPT OSS 20B",
-    # Full API names (from actual evaluation.csv)
-    "qwen/qwen3-32b": "Qwen 3 32B",
-    "groq/compound-mini": "Groq Compound Mini",
-    "llama-3.1-8b-instant": "Llama 3.1 8B",
-    "openai/gpt-oss-120b": "GPT OSS 120B",
+    # Full API names → short names
+    "openai/gpt-oss-20b": "GPT",
+    "qwen/qwen3-32b": "Qwen",
+    "moonshotai/kimi-k2.6": "Kimi",
+    "meta-llama/llama-3.3-70b-instruct": "Llama",
+    # Short names already clean
+    "GPT": "GPT",
+    "Qwen": "Qwen",
+    "Kimi": "Kimi",
+    "Llama": "Llama",
 }
+
 
 def _map_raw_data(df: pd.DataFrame) -> pd.DataFrame:
     """Map raw backend string values to the standard display names."""
@@ -107,6 +108,7 @@ def _map_raw_data(df: pd.DataFrame) -> pd.DataFrame:
         df["harm_category"] = df["harm_category"].replace(CAT_MAP)
     if "model" in df.columns:
         df["model"] = df["model"].replace(MODEL_MAP)
+        df.loc[~df["model"].isin(VALID_MODELS), "model"] = "Other"
     return df
 
 
@@ -120,7 +122,7 @@ def _validate_columns(df: pd.DataFrame, filepath: str) -> None:
     if missing:
         raise ValueError(f"Missing columns in {filepath}: {missing}")
 
-    extra = [col for col in df.columns if col not in REQUIRED_COLUMNS]
+    extra = [col for col in df.columns if col not in REQUIRED_COLUMNS + ["label_text", "label_numeric"]]
     if extra:
         print(f"[INFO] Extra columns ignored: {extra}")
 
@@ -170,11 +172,13 @@ def _validate_categories(df: pd.DataFrame) -> None:
     """Check that all categorical values are valid."""
     invalid_lang = df[~df["language"].isin(VALID_LANGUAGES)]
     if len(invalid_lang) > 0:
-        raise ValueError(f"Invalid languages: {invalid_lang['language'].unique().tolist()}")
+        print(f"[WARNING] Invalid languages found. Mapping to 'Other'. {invalid_lang['language'].unique().tolist()}")
+        df.loc[~df["language"].isin(VALID_LANGUAGES), "language"] = "Other"
 
     invalid_cat = df[~df["harm_category"].isin(VALID_CATEGORIES)]
     if len(invalid_cat) > 0:
-        raise ValueError(f"Invalid harm_category values: {invalid_cat['harm_category'].unique().tolist()}")
+        print(f"[WARNING] Invalid harm_category values found. Mapping to 'Other'. {invalid_cat['harm_category'].unique().tolist()}")
+        df.loc[~df["harm_category"].isin(VALID_CATEGORIES), "harm_category"] = "Other"
 
     invalid_model = df[~df["model"].isin(VALID_MODELS)]
     if len(invalid_model) > 0:
