@@ -168,7 +168,7 @@ def _validate_labels(df: pd.DataFrame) -> None:
         raise ValueError(f"Invalid labels found: {invalid['label'].unique().tolist()}")
 
 
-def _validate_categories(df: pd.DataFrame) -> None:
+def _validate_categories(df: pd.DataFrame) -> pd.DataFrame:
     """Check that all categorical values are valid."""
     invalid_lang = df[~df["language"].isin(VALID_LANGUAGES)]
     if len(invalid_lang) > 0:
@@ -184,6 +184,8 @@ def _validate_categories(df: pd.DataFrame) -> None:
     if len(invalid_model) > 0:
         print(f"[WARNING] Invalid models found. Mapping to 'Other'. {invalid_model['model'].unique().tolist()}")
         df.loc[~df["model"].isin(VALID_MODELS), "model"] = "Other"
+
+    return df
 
 
 def _validate_missing(df: pd.DataFrame) -> pd.DataFrame:
@@ -264,7 +266,7 @@ def load_evaluation(filepath: str = "evaluation.csv") -> pd.DataFrame:
     df = _normalize_labels(df)   # converts "refusal"/"partial"/"compliance" → 0/1/2
     df = _validate_missing(df)
     _validate_labels(df)
-    _validate_categories(df)
+    df = _validate_categories(df)
 
     # Derived columns
     df = _create_derived_columns(df)

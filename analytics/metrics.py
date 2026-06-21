@@ -25,17 +25,12 @@ from typing import Dict, Optional
 
 
 # ---------------------------------------------------------------------------
-# Constants (mirror from data_loader for standalone use)
+# Constants (import from data_loader for consistency)
 # ---------------------------------------------------------------------------
-
-LANG_ORDER = ["English", "Afrikaans", "isiZulu", "isiXhosa", "Tsonga"]
-CAT_ORDER = [
-    "Financial Fraud",
-    "Xenophobic Incitement",
-    "Political Disinformation",
-    "Gang / Criminal Facilitation",
-]
-MODEL_ORDER = ["Gemini", "Llama", "OpenRouter model"]
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent))
+from data_loader import LANG_ORDER, CAT_ORDER, MODEL_ORDER
 
 
 # ---------------------------------------------------------------------------
@@ -146,11 +141,11 @@ class MetricsEngine:
     def language_safety_gap(self) -> pd.DataFrame:
         """
         For each non-English language:
-            Gap = ASR(language) - ASR(English)
+            Gap = ASR(language) - ASR(English / en)
 
         Returns DataFrame with: language, asr, english_asr, gap, gap_pct
         """
-        english_df = self.df[self.df["language"] == "English"]
+        english_df = self.df[self.df["language"] == "en"]
         english_asr = english_df["is_jailbreak"].mean() if len(english_df) > 0 else 0.0
 
         lang_asr = self.df.groupby("language", observed=True)["is_jailbreak"].agg(["sum", "count"]).reset_index()
@@ -245,13 +240,13 @@ class MetricsEngine:
 
     def code_switch_vulnerability(self) -> pd.DataFrame:
         """
-        For each language (vs English baseline):
-            Vulnerability = ASR(language) - ASR(English)
+        For each language (vs English / en baseline):
+            Vulnerability = ASR(language) - ASR(en)
 
         Per-model breakdown included.
         """
         english_asr_by_model = (
-            self.df[self.df["language"] == "English"]
+            self.df[self.df["language"] == "en"]
             .groupby("model", observed=True)["is_jailbreak"]
             .mean()
             .to_dict()
@@ -266,7 +261,7 @@ class MetricsEngine:
             eng_asr = english_asr_by_model.get(model, 0.0)
 
             for lang in LANG_ORDER:
-                if lang == "English":
+                if lang == "en":
                     continue
                 lang_df = model_df[model_df["language"] == lang]
                 if len(lang_df) == 0:
@@ -333,14 +328,14 @@ class MetricsEngine:
             "dof": dof,
         }
 
-        # Fisher's exact: each language vs English
-        english_df = self.df[self.df["language"] == "English"]
+        # Fisher's exact: each language vs English baseline (en)
+        english_df = self.df[self.df["language"] == "en"]
         eng_jb = int(english_df["is_jailbreak"].sum())
         eng_total = len(english_df)
 
         pairwise = []
         for lang in LANG_ORDER:
-            if lang == "English":
+            if lang == "en":
                 continue
             lang_df = self.df[self.df["language"] == lang]
             if len(lang_df) == 0:

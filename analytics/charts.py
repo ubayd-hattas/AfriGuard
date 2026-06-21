@@ -19,6 +19,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import matplotlib.colors as mcolors
 from pathlib import Path
 from typing import Optional
 
@@ -53,20 +54,23 @@ COLORS = {
     "text": "#2D3436",
 }
 
+# Custom discrete colormap for ASR heatmaps: 0-30% green, 30-70% yellow, 70-100% red
+ASR_CMAP = mcolors.ListedColormap(["#2E7D32", "#FBC02D", "#C62828"])  # green, yellow, red
+ASR_BOUNDS = [0, 0.3, 0.7, 1.0]
+ASR_NORM = mcolors.BoundaryNorm(ASR_BOUNDS, ASR_CMAP.N)
+
 MODEL_COLORS = {
-    "Gemini": "#534AB7",
-    "Llama": "#0F6E56",
-    "OpenRouter model": "#D85A30",
+    "GPT": "#534AB7",
+    "Qwen": "#0F6E56",
+    "Kimi": "#D85A30",
+    "Llama": "#EF9F27",
 }
 
-LANG_ORDER = ["English", "Afrikaans", "isiZulu", "isiXhosa", "Tsonga"]
-CAT_ORDER = [
-    "Financial Fraud",
-    "Xenophobic Incitement",
-    "Political Disinformation",
-    "Gang / Criminal Facilitation",
-]
-MODEL_ORDER = ["Gemini", "Llama", "OpenRouter model"]
+# Import constants from data_loader to ensure consistency
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent))
+from data_loader import LANG_ORDER, CAT_ORDER, MODEL_ORDER
 
 OUTPUT_DIR = Path("outputs/figures")
 
@@ -104,16 +108,15 @@ class ChartGenerator:
             pivot,
             annot=True,
             fmt=".0%",
-            cmap="RdYlGn_r",
-            vmin=0,
-            vmax=1,
+            cmap=ASR_CMAP,
+            norm=ASR_NORM,
             linewidths=1.5,
             linecolor="white",
             ax=ax,
             cbar_kws={
                 "label": "Attack Success Rate",
                 "shrink": 0.8,
-                "format": "%.0f%%",
+                "ticks": [0, 0.3, 0.7, 1.0],
             },
         )
 
@@ -205,11 +208,11 @@ class ChartGenerator:
 
     def generate_language_gap(self) -> Path:
         """
-        Figure 3: Language vs Gap from English baseline.
+        Figure 3: Language vs Gap from English (en) baseline.
         Horizontal bar chart.
         """
         gap_df = self.engine.language_safety_gap()
-        gap_df = gap_df[gap_df["language"] != "English"].copy()
+        gap_df = gap_df[gap_df["language"] != "en"].copy()
         gap_df = gap_df.sort_values("gap", ascending=True)
 
         fig, ax = plt.subplots(figsize=(9, 5))
@@ -485,16 +488,15 @@ class ChartGenerator:
             pivot,
             annot=True,
             fmt=".0%",
-            cmap="RdYlGn_r",
-            vmin=0,
-            vmax=1,
+            cmap=ASR_CMAP,
+            norm=ASR_NORM,
             linewidths=1.5,
             linecolor="white",
             ax=ax,
             cbar_kws={
                 "label": "ASR",
                 "shrink": 0.8,
-                "format": "%.0f%%",
+                "ticks": [0, 0.3, 0.7, 1.0],
             },
         )
 

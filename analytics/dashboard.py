@@ -30,11 +30,28 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# Custom discrete colorscale for ASR: 0-30% green, 30-70% yellow, 70-100% red
+ASR_COLORSCALE = [
+    [0.0, "#2E7D32"],
+    [0.3, "#2E7D32"],
+    [0.3, "#FBC02D"],
+    [0.7, "#FBC02D"],
+    [0.7, "#C62828"],
+    [1.0, "#C62828"],
+]
+
 # ---------------------------------------------------------------------------
-# Data Loading (cached)
+# Data Loading (cached with file-hash invalidation)
 # ---------------------------------------------------------------------------
+def _compute_file_hash(path: Path) -> str:
+    import hashlib
+    if not path.exists():
+        return ""
+    with open(path, "rb") as f:
+        return hashlib.md5(f.read()).hexdigest()
+
 @st.cache_data
-def load_data(filepath: str = "evaluation.csv"):
+def load_data(filepath: str = "evaluation.csv", file_hash: str = ""):
     import sys
     current_dir = Path(__file__).parent
     if str(current_dir) not in sys.path:
@@ -76,10 +93,15 @@ def load_data(filepath: str = "evaluation.csv"):
         return empty_df, "Demo Mode", None, VALID_LANGUAGES, VALID_CATEGORIES, VALID_MODELS
 
 # ---------------------------------------------------------------------------
-# Load Data
+# Load Data (with cache invalidation via file hash)
 # ---------------------------------------------------------------------------
+_eval_path = Path(__file__).parent / "evaluation.csv"
+if not _eval_path.exists():
+    _eval_path = Path(__file__).parent.parent / "data" / "results" / "evaluation.csv"
+_file_hash = _compute_file_hash(_eval_path) if _eval_path.exists() else ""
+
 try:
-    df, mode, loaded_path, LANG_ORDER, CAT_ORDER, MODEL_ORDER = load_data()
+    df, mode, loaded_path, LANG_ORDER, CAT_ORDER, MODEL_ORDER = load_data(file_hash=_file_hash)
     if mode == "Demo Mode":
         st.warning("⚠️ **Demo Mode Active:** `evaluation.csv` not found. Displaying empty dashboard. Please drop in your data to view visualizations.")
     else:
@@ -105,6 +127,9 @@ with st.sidebar:
     if st.button("🔄 Reset All Filters", use_container_width=True):
         st.rerun()
 
+    # DEBUG MODE toggle
+    DEBUG_MODE = st.checkbox("🐛 Enable Debug Mode", value=False)
+
 # ---------------------------------------------------------------------------
 # Apply Filters
 # ---------------------------------------------------------------------------
@@ -125,6 +150,40 @@ if mode == "Research Mode":
         st.write(f"**Selected models:** {selected_models}")
         st.write(f"**Selected languages:** {selected_languages}")
         st.write(f"**Selected categories:** {selected_categories}")
+
+# DEBUG MODE: comprehensive diagnostics
+if DEBUG_MODE and mode == "Research Mode":
+    st.divider()
+    st.markdown("### 🐛 DEBUG MODE — Data Pipeline Diagnostics")
+    
+    col_d1, col_d2, col_d3 = st.columns(3)
+    col_d1.metric("Rows Loaded", f"{len(df):,}")
+    col_d2.metric("Rows After Filters", f"{len(filtered_df):,}")
+    col_d3.metric("Rows Lost", f"{len(df) - len(filtered_df):,}")
+    
+    st.markdown("**Unique Models:**")
+    st.json({"models": df['model'].unique().tolist()})
+    st.markdown("**Unique Languages:**")
+    st.json({"languages": df['language'].unique().tolist()})
+    st.markdown("**Unique Harm Categories:**")
+    st.json({"categories": df['harm_category'].unique().tolist()})
+    
+    st.markdown("**DataFrame Head:**")
+    st.dataframe(df.head(10))
+    st.markdown("**DataFrame Tail:**")
+    st.dataframe(df.tail(10))
+    
+    st.markdown("**Label Distribution:**")
+    st.json(df['label'].value_counts().sort_index().to_dict())
+    
+    st.markdown("**Language Distribution:**")
+    st.json(df['language'].value_counts().to_dict())
+    
+    st.markdown("**Model Distribution:**")
+    st.json(df['model'].value_counts().to_dict())
+    
+    st.markdown("**Category Distribution:**")
+    st.json(df['harm_category'].value_counts().to_dict())
 
 if len(filtered_df) == 0 and mode != "Demo Mode":
     st.warning("⚠️ No data matches the selected filters. Check the Debug Information above.")
@@ -173,8 +232,9 @@ with tab_overview:
         pivot = filtered_df.groupby(["language", "model"], observed=True)["is_jailbreak"].mean().unstack()
         if not pivot.empty:
             fig_heat = px.imshow(
-                pivot, text_auto=".1%", color_continuous_scale="Reds", aspect="auto",
-                labels={"color": "ASR", "x": "Model", "y": "Language"}
+                pivot, text_auto=".1%", color_continuous_scale=ASR_COLORSCALE, aspect="auto",
+                labels={"color": "ASR", "x": "Model", "y": "Language"},
+                zmin=0, zmax=1
             )
             fig_heat.update_layout(height=400, coloraxis_colorbar=dict(tickformat=".0%"))
             st.plotly_chart(fig_heat, use_container_width=True)
@@ -195,9 +255,10 @@ with tab_models:
         col_m1, col_m2 = st.columns(2)
         with col_m1:
             st.markdown("**ASR by Model**")
+            model_summary_asr_sorted = model_summary.sort_values("ASR", ascending=False)
             fig_masr = px.bar(
-                model_summary.sort_values("ASR", ascending=False),
-                x="model", y="ASR", text=model_summary["ASR"].apply(lambda x: f"{x:.1%}"),
+                model_summary_asr_sorted,
+                x="model", y="ASR", text=model_summary_asr_sorted["ASR"].apply(lambda x: f"{x:.1%}"),
                 color="model", labels={"ASR": "Attack Success Rate", "model": ""}
             )
             fig_masr.update_layout(showlegend=False, yaxis=dict(tickformat=".0%"))
@@ -205,9 +266,10 @@ with tab_models:
 
         with col_m2:
             st.markdown("**Refusal Rate by Model**")
+            model_summary_ref_sorted = model_summary.sort_values("Refusal_Rate", ascending=True)
             fig_mref = px.bar(
-                model_summary.sort_values("Refusal_Rate", ascending=True),
-                x="model", y="Refusal_Rate", text=model_summary["Refusal_Rate"].apply(lambda x: f"{x:.1%}"),
+                model_summary_ref_sorted,
+                x="model", y="Refusal_Rate", text=model_summary_ref_sorted["Refusal_Rate"].apply(lambda x: f"{x:.1%}"),
                 color="model", labels={"Refusal_Rate": "Refusal Rate", "model": ""}
             )
             fig_mref.update_layout(showlegend=False, yaxis=dict(tickformat=".0%"))
@@ -226,9 +288,10 @@ with tab_languages:
         col_l1, col_l2 = st.columns(2)
         with col_l1:
             st.markdown("**ASR by Language**")
+            lang_asr_sorted = lang_asr.sort_values("is_jailbreak", ascending=False)
             fig_lang = px.bar(
-                lang_asr.sort_values("is_jailbreak", ascending=False),
-                x="language", y="is_jailbreak", text=lang_asr["is_jailbreak"].apply(lambda x: f"{x:.1%}"),
+                lang_asr_sorted,
+                x="language", y="is_jailbreak", text=lang_asr_sorted["is_jailbreak"].apply(lambda x: f"{x:.1%}"),
                 color="language", labels={"is_jailbreak": "Attack Success Rate", "language": ""}
             )
             fig_lang.update_layout(showlegend=False, yaxis=dict(tickformat=".0%"))
@@ -247,10 +310,11 @@ with tab_languages:
             
             if gap_data:
                 gap_df = pd.DataFrame(gap_data)
+                gap_df_sorted = gap_df.sort_values("Gap")
                 fig_gap = px.bar(
-                    gap_df.sort_values("Gap"), x="Gap", y="Language", orientation="h",
-                    color="Gap", color_continuous_scale="RdYlGn_r",
-                    text=gap_df["Gap"].apply(lambda x: f"{x:+.1f}pp"),
+                    gap_df_sorted, x="Gap", y="Language", orientation="h",
+                    color="Gap", color_continuous_scale="RdYlGn",
+                    text=gap_df_sorted["Gap"].apply(lambda x: f"{x:+.1f}pp"),
                     labels={"Gap": "Gap vs English (pp)"}
                 )
                 fig_gap.add_vline(x=0, line_dash="dash", line_color="black")

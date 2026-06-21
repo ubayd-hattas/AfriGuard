@@ -42,8 +42,8 @@ class TableGenerator:
         """
         dist = self.engine.full_distribution(by="language")
 
-        # Get English baseline for gap calculation
-        english_row = dist[dist["language"] == "English"]
+        # Get English (en) baseline for gap calculation
+        english_row = dist[dist["language"] == "en"]
         english_asr = english_row["jailbreak_rate"].values[0] if len(english_row) > 0 else 0
 
         dist["gap_vs_english"] = dist["jailbreak_rate"] - english_asr
