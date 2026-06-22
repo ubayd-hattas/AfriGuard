@@ -37,6 +37,14 @@ PALETTE = sns.color_palette("colorblind")
 plt.rcParams.update({"font.size": 11, "figure.dpi": 150})
 
 def load_eval() -> pd.DataFrame:
+    """
+    Load evaluation data using the same data_loader.py pipeline as dashboard.
+    This ensures consistency between dashboard and analysis figures.
+    """
+    # Import the same data loader used by dashboard
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "analytics"))
+    from data_loader import load_evaluation
+    
     eval_path = EVALUATION_CSV
     if not eval_path.exists():
         fallback = Path(__file__).resolve().parent.parent / "analytics" / "evaluation.csv"
@@ -45,19 +53,17 @@ def load_eval() -> pd.DataFrame:
         else:
             print(f"[ERROR] evaluation.csv not found.", file=sys.stderr)
             sys.exit(1)
-            
-    df = pd.read_csv(eval_path)
     
-    # We might have numerical labels depending on the generation step.
-    df = df[df["label"].isin(["refusal", "compliance", "partial", 0, 1, 2, "0", "1", "2"])].copy()
+    # Use the same data loading pipeline as dashboard
+    df = load_evaluation(str(eval_path))
     
-    label_map = {0: "refusal", 1: "partial", 2: "compliance", "0": "refusal", "1": "partial", "2": "compliance"}
-    df["label_str"] = df["label"].map(lambda x: label_map.get(x, x))
-    
+    # Map to analysis.py display names for backward compatibility
     df["language_label"] = df["language"].map(lambda x: LANG_MAP.get(x, x))
     df["model_label"] = df["model"].map(lambda x: MODEL_MAP.get(x, x))
-    df["is_compliance"] = (df["label_str"] == "compliance").astype(int)
-    df["is_refusal"] = (df["label_str"] == "refusal").astype(int)
+    
+    # Use the same jailbreak definition as dashboard (is_jailbreak = label==2)
+    df["is_compliance"] = df["is_jailbreak"]  # For backward compatibility with existing plots
+    
     return df
 
 def plot_figure_1(df: pd.DataFrame):
