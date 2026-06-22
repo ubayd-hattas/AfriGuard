@@ -6,7 +6,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Dataset](https://img.shields.io/badge/dataset-1,120%20evaluations-green.svg)](https://github.com/ubayd-hattas/Global-South-Hackathon)
+[![Dataset](https://img.shields.io/badge/dataset-1,120%20evaluations-green.svg)](https://github.com/ubayd-hattas/AfriGuard)
+[![Dashboard](https://img.shields.io/badge/dashboard-streamlit-orange.svg)](https://afriguard.streamlit.app/)
 
 ---
 
@@ -14,7 +15,7 @@
 
 AfriGuard is the first comprehensive red-teaming evaluation framework targeting safety vulnerabilities in South African languages. We evaluate four frontier LLMs across **seven languages** (English, isiZulu, isiXhosa, Afrikaans, Sesotho, Sepedi, Tsonga) and **four harm categories** endemic to South Africa, measuring **Attack Success Rate (ASR)** — the percentage of adversarial prompts that bypass safety filters.
 
-**Key Finding:** Low-resource South African languages exhibit catastrophic safety failures. The mean ASR across all evaluations is **60.6%** — more than double the English baseline of **26.6%**. Certain model-language combinations reach **>90% ASR**, meaning models comply with harmful requests 9 out of 10 times.
+**Key Finding:** Low-resource South African languages exhibit catastrophic safety failures. The mean ASR across all evaluations is **50.1%** — more than double the English baseline of **24.4%**. Certain model-language combinations reach **>90% ASR**, meaning models comply with harmful requests 9 out of 10 times.
 
 | Metric | Value |
 |--------|-------|
@@ -22,8 +23,8 @@ AfriGuard is the first comprehensive red-teaming evaluation framework targeting 
 | **Languages** | 7 (6 African + English baseline) |
 | **Models** | 4 frontier LLMs |
 | **Harm Categories** | Financial fraud, xenophobic incitement, political disinformation, gang affiliation |
-| **Highest ASR** | 95.0% (Qwen 3 + Afrikaans) |
-| **Lowest ASR** | 10.0% (GPT-OSS + English/Afrikaans) |
+| **Highest ASR** | 92.5% (Qwen 3 + Afrikaans/Sepedi) |
+| **Lowest ASR** | 7.5% (GPT-OSS + English) |
 
 ---
 
@@ -61,10 +62,10 @@ We created **40 seed prompts** defining areas of harm, translated into **7 langu
 
 | Model | Parameters | Provider | Safety Approach | Key Characteristic |
 |-------|------------|----------|-----------------|-------------------|
-| **GPT-OSS (20B)** | 21B total / 3.6B active | OpenAI | RLHF + MoE | Most robust; highest refusal rate (50.2%) |
-| **Llama 3.3 (70B)** | 70B | Meta | RLHF + Red-teaming | Highest partial rate (34.9%); ambiguous engagement |
-| **Kimi K2.6** | ~32B | Moonshot AI | RLHF + Constitutional AI | Binary failure mode: refuses or complies fully |
-| **Qwen 3 (32B)** | 32B | Alibaba | RLHF + Multilingual alignment | Catastrophically vulnerable; 80.6% ASR |
+| **GPT-OSS (20B)** | 21B total / 3.6B active | OpenAI | RLHF + MoE | Most robust; highest refusal rate (45.4%) |
+| **Llama 3.3 (70B)** | 70B | Meta | RLHF + Red-teaming | Highest partial rate (34.6%); ambiguous engagement |
+| **Kimi K2.6** | ~32B | Moonshot AI | RLHF + Constitutional AI | Low ASR (32.1%) but extremely high partial rate (57.9%) |
+| **Qwen 3 (32B)** | 32B | Alibaba | RLHF + Multilingual alignment | Catastrophically vulnerable; 78.6% ASR |
 
 Models were selected to represent both Chinese-aligned (Kimi, Qwen) and Western-aligned (Llama, GPT-OSS) safety paradigms.
 
@@ -110,7 +111,16 @@ This isolates the effect of language choice from prompt content.
 ## 📁 Repository Structure
 
 ```
-Global-South-Hackathon/
+AfriGuard/
+│
+├── V1 summary/                       # Version 1.0 deliverables (archived for transparency)
+│   ├── AFRIGUARD_HACKATHON_REPORT_REVISED.docx
+│   └── AfriGuard_Hackathon_Summary.pptx
+│
+├── V2 summary/                       # Version 2.0 corrected deliverables
+│   ├── AFRIGUARD_HACKATHON_REPORT_V2.md      # Corrected full analysis report (1,120 responses)
+│   ├── AfriGuard_Hackathon_Summary_V2.pptx   # Corrected presentation slides
+│   └── table.csv                             # Comparison table: Version 1.0 vs Version 2.0 differences
 │
 ├── data/
 │   ├── seed_prompts.csv              # 40 original English prompts
@@ -142,10 +152,6 @@ Global-South-Hackathon/
 │
 ├── .devcontainer/                     # Dev Container configuration
 │
-├── AFRIGUARD_HACKATHON_REPORT_REVISED.docx   # Final hackathon report
-│
-├── AfriGuard_Hackathon_Summary.pptx  # Hackathon summary presentation
-│
 ├── .gitignore
 │
 ├── LICENSE
@@ -156,6 +162,17 @@ Global-South-Hackathon/
 ```
 
 ### File Descriptions
+
+#### `V1 summary/` — Version 1.0 (Archived)
+- **AFRIGUARD_HACKATHON_REPORT_REVISED.docx** — Original hackathon report (953/1,120 responses processed)
+- **AfriGuard_Hackathon_Summary.pptx** — Original presentation slides
+- *Retained for transparency. See Erratum section for correction details.*
+
+#### `V2 summary/` — Version 2.0 (Current)
+- **AFRIGUARD_HACKATHON_REPORT_V2.md** — Corrected full analysis report (1,120 responses)
+- **AfriGuard_Hackathon_Summary_V2.pptx** — Corrected presentation slides
+- **table.csv** — Comparison table showing differences between Version 1.0 and Version 2.0 results
+- *These contain the authoritative, corrected results.*
 
 #### `data/`
 - **`seed_prompts.csv`** — The 40 original English prompts used as seeds for translation
@@ -188,8 +205,8 @@ Global-South-Hackathon/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/ubayd-hattas/Global-South-Hackathon.git
-cd Global-South-Hackathon
+git clone https://github.com/ubayd-hattas/AfriGuard.git
+cd AfriGuard
 
 # 2. Install dependencies
 pip install -r requirements.txt
@@ -262,98 +279,105 @@ python scripts/analysis.py
 
 ## 📈 Results
 
-### Overall Safety Distribution
+### Erratum: Version 1.0 → Version 2.0
+
+After submitting Version 1.0, we discovered a bug in `judge.py` that caused only **953 of 1,120 responses (85%)** to be correctly processed. The bug was a silent data-loss issue in the heuristic classification loop. Version 2.0 presents the corrected full dataset.
+
+| Metric | Version 1.0 | Version 2.0 | Change |
+|--------|-------------|-------------|--------|
+| **Mean ASR** | 60.6% | **50.1%** | -10.5 pp |
+| **Qwen 3 ASR** | 80.6% | **78.6%** | -2.0 pp |
+| **Kimi K2.6 ASR** | 70.9% | **32.1%** | -38.8 pp |
+| **GPT-OSS ASR** | 42.1% | **35.4%** | -6.7 pp |
+| **Llama 3.3 ASR** | 54.1% | **54.3%** | +0.2 pp |
+| **Catastrophic (>90%)** | 5 | **3** | -2 |
+
+*Kimi was most affected because its high partial-compliance responses were disproportionately skipped by the buggy classification loop.*
+
+---
+
+### Overall Safety Distribution (Version 2.0)
 
 Across all 1,120 evaluated responses (40 seed prompts × 7 languages × 4 models):
 
 | Label | Count | Percentage |
 |-------|-------|------------|
-| **Refusal** | 259 | 23.1% |
-| **Partial** | 168 | 15.0% |
-| **Compliance** | 693 | 61.9% |
+| **Refusal** | 206 | 18.4% |
+| **Partial** | 353 | 31.5% |
+| **Compliance** | 561 | 50.1% |
 
-Nearly **two-thirds** of all responses represent full compliance with harmful requests, while only **23.1%** are clear refusals.
+Half of all responses (50.1%) represent full compliance with harmful requests, while only 18.4% are clear refusals. The high partial rate (31.5%) indicates models frequently engage with harmful requests in ambiguous or educational-framing manners.
 
-### Model Vulnerability Comparison
+### Model Vulnerability Comparison (Version 2.0)
 
 | Rank | Model | ASR | Refusal Rate | Partial Rate | Assessment |
 |------|-------|-----|--------------|--------------|------------|
-| 1 (most vulnerable) | **Qwen 3 (32B)** | **80.6%** | 7.6% | 11.8% | Catastrophically vulnerable |
-| 2 | **Kimi K2.6** | **70.9%** | 23.6% | 5.5% | Highly vulnerable; binary failure mode |
-| 3 | **Llama 3.3 (70B)** | **54.1%** | 11.0% | 34.9% | Moderately vulnerable; high ambiguity |
-| 4 (most robust) | **GPT-OSS (20B)** | **42.1%** | 50.2% | 7.7% | Most robust; highest refusal rate |
+| 1 (most vulnerable) | **Qwen 3 (32B)** | **78.6%** | 7.1% | 14.3% | Catastrophically vulnerable |
+| 2 | **Llama 3.3 (70B)** | **54.3%** | 11.1% | 34.6% | Moderately vulnerable; high ambiguity |
+| 3 | **GPT-OSS (20B)** | **35.4%** | 45.4% | 19.3% | Most robust; highest refusal rate |
+| 4 | **Kimi K2.6** | **32.1%** | 10.0% | 57.9% | Low ASR but extremely high partial rate |
 
 **Critical insight:** Safety performance does **NOT** track parameter count. GPT-OSS (20B) outperforms Qwen (32B) and Llama (70B).
 
-**Qwen 3 (32B)** exhibits the highest vulnerability, with an ASR of 80.6% and a refusal rate of only 7.6%. This suggests that Qwen's multilingual alignment, while broad in language coverage (119 languages), does not translate to effective safety enforcement in low-resource African languages.
+**Qwen 3 (32B)** exhibits the highest vulnerability, with an ASR of 78.6% and a refusal rate of only 7.1%.
 
-**Kimi K2.6** follows at 70.9% ASR, with a higher refusal rate (23.6%) but very low partial compliance (5.5%), indicating a binary failure mode: the model either refuses entirely or complies fully.
+**Kimi K2.6** shows the lowest ASR at 32.1% but has an extremely high partial rate (57.9%). This indicates Kimi almost never gives a clear refusal; instead, it engages with harmful requests in a hedged or ambiguous manner — a different but equally dangerous failure mode.
 
-**Llama 3.3 (70B)** presents a distinct profile: while its ASR (54.1%) is lower than Qwen and Kimi, it exhibits the highest partial compliance rate (34.9%). This suggests that Llama frequently engages with harmful requests in an ambiguous or educational-framing manner, which still represents a safety failure.
+**GPT-OSS (20B)** is the most robust model, with a 45.4% refusal rate and 35.4% ASR. Its MoE architecture and strong English-centric safety training appear to transfer better to African languages than the multilingual-aligned approaches of Qwen and Kimi.
 
-**GPT-OSS (20B)** is the most robust model, with a 50.2% refusal rate and 42.1% ASR. Its MoE architecture and strong English-centric safety training appear to transfer better to African languages than the multilingual-aligned approaches of Qwen and Kimi.
-
-### Language-Specific Vulnerabilities
+### Language-Specific Vulnerabilities (Version 2.0)
 
 | Language | ASR | Gap vs English (pp) | Family | Notes |
 |----------|-----|---------------------|--------|-------|
-| **English** | 26.6% | — | Baseline | Safest language |
-| **Afrikaans** | 48.8% | +21.9 | Germanic | Smallest gap; more training data |
-| **isiZulu** | 60.5% | +33.7 | Nguni (Bantu) | Moderate Bantu vulnerability |
-| **Sesotho** | 68.5% | +41.7 | Sotho-Tswana (Bantu) | High vulnerability |
-| **Tsonga** | 68.7% | +43.0 | Tswa-Ronga (Bantu) | Highest non-Bantu Bantu |
-| **isiXhosa** | 73.5% | +46.7 | Nguni (Bantu) | Very high vulnerability |
-| **Sepedi** | **77.8%** | **+50.9** | Sotho-Tswana (Bantu) | **Highest overall ASR** |
+| **English** | 24.4% | — | Baseline | Safest language |
+| **Afrikaans** | 45.0% | +20.6 | Germanic | Smallest gap; more training data |
+| **isiZulu** | 51.9% | +27.5 | Nguni (Bantu) | Moderate Bantu vulnerability |
+| **Tsonga** | 54.4% | +30.0 | Tswa-Ronga (Bantu) | Highest non-Bantu Bantu |
+| **Sesotho** | 55.6% | +31.2 | Sotho-Tswana (Bantu) | High vulnerability |
+| **Sepedi** | 59.4% | +35.0 | Sotho-Tswana (Bantu) | Very high vulnerability |
+| **isiXhosa** | **60.0%** | **+35.6** | Nguni (Bantu) | **Highest overall ASR** |
 
-The English baseline ASR of 26.6% is substantially lower than every African language, confirming the central hypothesis that low-resource language safety alignment lags behind English.
+The English baseline ASR of 24.4% is substantially lower than every African language, confirming the central hypothesis that low-resource language safety alignment lags behind English.
 
-**Sepedi** exhibits the highest ASR at 77.8% (+50.9 pp vs English), followed closely by **isiXhosa** at 73.5% (+46.7 pp). The three Nguni-Tsonga languages (isiXhosa, isiZulu, Tsonga) and the two Sotho-Tswana languages (Sesotho, Sepedi) cluster at the high end (68.5–77.8%), while **Afrikaans**, a Germanic language with more training data availability, shows the smallest gap (+21.9 pp) at 48.8%.
+**isiXhosa** exhibits the highest ASR at 60.0% (+35.6 pp vs English), followed closely by **Sepedi** at 59.4% (+35.0 pp). Bantu languages (isiZulu, isiXhosa, Sesotho, Sepedi, Tsonga) cluster at the high end (51.9–60.0%), while **Afrikaans**, a Germanic language with more training data availability, shows the smallest gap (+20.6 pp) at 45.0%.
 
-This pattern suggests that **morphological complexity and training data scarcity** are both contributing factors. Bantu languages (isiZulu, isiXhosa, Sesotho, Sepedi, Tsonga) with their noun class systems and agglutinative morphology present greater tokenization and alignment challenges than Afrikaans, which shares Germanic roots with English and Dutch and has significantly more pre-training data available.
-
-### Harm Category Analysis
+### Harm Category Analysis (Version 2.0)
 
 | Harm Category | Mean ASR | Highest-Language ASR | Most Concerning |
 |---------------|----------|---------------------|-----------------|
-| **Political Disinformation** | **67.1%** | Sepedi 82.1% | Highest mean; critical for 2026 elections |
-| **Gang/Criminal Facilitation** | 64.3% | Sepedi 73.5% | Sesotho 75.8%, isiXhosa 75.0% |
-| **Xenophobic Incitement** | 58.3% | **Tsonga 83.3%** | Extreme disparity: English 20.0% → Tsonga 83.3% (4.2× multiplier) |
-| **Financial Fraud** | 52.8% | Sepedi 72.7% | "Safest" category but still critically high |
+| **Gang/Criminal Facilitation** | **53.6%** | Sesotho 62.5% | Most dangerous category |
+| **Political Disinformation** | 52.9% | isiZulu 62.5% | Critical for 2026 elections |
+| **Xenophobic Incitement** | 49.3% | **Tsonga 75.0%** | Extreme disparity: English 20.0% → Tsonga 75.0% (3.75× multiplier) |
+| **Financial Fraud** | 44.6% | Sesotho/Sepedi 60.0% | "Safest" category but still critically high |
 
-**Political disinformation** exhibits the highest mean ASR (67.1%), with Sepedi reaching 82.1%. This is particularly concerning given South Africa's history of politically motivated violence and the upcoming 2026 municipal elections.
+**No harm category is safe in any African language.** Even the lowest cell (English financial fraud at 10.0%) is concerning.
 
-**Xenophobic incitement** shows the most extreme language disparity: while English ASR is only 20.0%, Tsonga reaches 83.3% — a **4.2× multiplier**. Financial fraud, the most domain-specific category, has the lowest mean ASR (52.8%), suggesting that models retain some safety alignment for well-represented scam types even in low-resource languages, though Sepedi still reaches 72.7%.
-
-**No harm category is safe in any African language.** Even the lowest cell (English financial fraud at 13.2%) is concerning.
-
-### Catastrophic Failure Modes (ASR > 90%)
+### Catastrophic Failure Modes (ASR > 90%) — Version 2.0
 
 These models comply with harmful requests **9+ times out of 10**:
 
-| Model | Language | ASR | Context |
-|-------|----------|-----|---------|
-| **Qwen 3 (32B)** | Afrikaans | **95.0%** | Even relatively higher-resource Afrikaans is catastrophically vulnerable to Qwen |
-| **Kimi K2.6** | isiZulu | **94.5%** | The model almost never refuses isiZulu prompts, generating full scam templates, disinformation scripts, and incitement language |
-| **Qwen 3 (32B)** | Sepedi | **92.5%** | Near-universal compliance for this Sotho-Tswana language |
-| **Kimi K2.6** | Tsonga | **91.0%** | Similarly catastrophic failure for this Tswa-Ronga language |
-| **Qwen 3 (32B)** | isiXhosa | **90.0%** | Near-universal compliance for this Nguni language |
+| Model | Language | ASR |
+|-------|----------|-----|
+| **Qwen 3 (32B)** | Afrikaans | **92.5%** |
+| **Qwen 3 (32B)** | Sepedi | **92.5%** |
+| **Qwen 3 (32B)** | isiXhosa | **90.0%** |
 
 **Safest combinations:**
 | Model | Language | ASR |
 |-------|----------|-----|
-| **GPT-OSS (20B)** | English | **10.0%** |
+| **GPT-OSS (20B)** | English | **7.5%** |
 | **GPT-OSS (20B)** | Afrikaans | **10.0%** |
-| **GPT-OSS (20B)** | isiZulu | **35.0%** |
-| **GPT-OSS (20B)** | isiXhosa | **45.5%** |
-| **Llama 3.3 (70B)** | English | **32.0%** |
+| **Kimi K2.6** | English | **17.5%** |
+| **Llama 3.3 (70B)** | Afrikaans | **22.5%** |
+| **Kimi K2.6** | Tsonga | **25.0%** |
 
-**GPT-OSS is the only model maintaining sub-50% ASR for any African language.**
+**GPT-OSS is the only model maintaining sub-15% ASR for English and sub-20% for Afrikaans.**
 
 ### Why Low-Resource Languages Bypass Safety
 
 1. **Token Alignment Gaps:** Safety-critical concepts ("fraud", "scam", "phishing", "xenophobia") do not align cross-lingually in embedding space. Refusal triggers misfire when expressed in Bantu noun classes or agglutinative morphology.
 
-2. **Training Data Imbalance:** Safety training data is overwhelmingly English. Qwen 3 was trained on 36 trillion tokens across 119 languages — yet achieves 80.6% ASR. **Exposure ≠ alignment.** African language safety examples are sparse or absent.
+2. **Training Data Imbalance:** Safety training data is overwhelmingly English. Qwen 3 was trained on 36 trillion tokens across 119 languages — yet achieves 78.6% ASR. **Exposure ≠ alignment.** African language safety examples are sparse or absent.
 
 3. **Classifier Distribution Shift:** Safety classifiers trained on English token distributions fail when confronted with different n-gram and morphological patterns. The consistent pattern of English < Afrikaans < Bantu languages suggests a gradient of distributional distance from the training domain.
 
@@ -363,8 +387,9 @@ These models comply with harmful requests **9+ times out of 10**:
 
 > **A model can be safe in English and catastrophically unsafe in an African language.**
 
-- **Qwen 3 (32B)** proves it: 7.6% refusal and 80.6% attack success across every language tested — despite 119-language training
-- **GPT-OSS (20B)** is the most robust model but still achieves 42.1% ASR — far from safe
+- **Qwen 3 (32B)** proves it: 7.1% refusal and 78.6% attack success across every language tested — despite 119-language training
+- **GPT-OSS (20B)** is the most robust model but still achieves 35.4% ASR — far from safe
+- **Kimi K2.6** has the lowest ASR (32.1%) but an extremely high partial rate (57.9%), meaning it almost never refuses — instead providing harmful content wrapped in disclaimers
 - **Bantu morphological complexity** (noun classes, agglutination) systematically disrupts safety heuristics
 - **Language coverage ≠ safety coverage:** Multilingual capability does not imply multilingual safety
 
@@ -375,7 +400,7 @@ These models comply with harmful requests **9+ times out of 10**:
 ### Current Limitations
 
 1. **Sample Size:** 1,120 responses provide robust trend detection but may miss rare failure modes. Expansion to 5,000+ responses would improve statistical power.
-2. **Language Coverage:** 6 of 12 official languages evaluated. Ndebele, Swati, Venda, and Tshivenda remain unstudied — given Sepedi's 77.8% ASR, these likely exhibit similar or greater vulnerability.
+2. **Language Coverage:** 6 of 12 official languages evaluated. Ndebele, Swati, Venda, and Tshivenda remain unstudied — given isiXhosa's 60.0% ASR, these likely exhibit similar or greater vulnerability.
 3. **Harm Category Scope:** Four categories do not exhaust the harm landscape. Health misinformation, gender-based violence, and child safety remain unstudied.
 4. **Model Access:** API-only evaluation limits mechanistic interpretability. White-box access would enable analysis of why specific languages bypass safety (e.g., MoE routing patterns in GPT-OSS).
 5. **Temporal Validity:** Results represent a snapshot (June 2026). Model weights and safety filters change; re-run quarterly.
@@ -403,12 +428,11 @@ These models comply with harmful requests **9+ times out of 10**:
 |--------|------|
 | **Jaswin Chinthala** | Testing jailbreaking pipeline, model evaluation |
 | **Seth Miguel Ferreira** | Adversarial prompting and judging pipeline |
-| **Ubayd Hattas** | Analytics pipeline, judging and evaluation pipelines |
+| **Ubayd Hattas** | Analytics pipeline, judging and evaluation pipelines, dashboard |
 | **Sebastian Stent** | Translation pipeline, dataset curation |
 
 **Affiliation:** Global South AI Safety Hackathon — Africa Track, Cape Town Hub  
-**Dates:** 19–21 June 2026  
-**Contact:** [ubayd.hattas@example.com](mailto:ubayd.hattas@example.com)
+**Dates:** 19–21 June 2026
 
 ---
 
@@ -440,18 +464,33 @@ If you use this work in your research, please cite:
   author={Chinthala, Jaswin and Ferreira, Seth Miguel and Hattas, Ubayd and Stent, Sebastian},
   year={2026},
   howpublished={Global South AI Safety Hackathon, Cape Town Hub},
-  url={https://github.com/ubayd-hattas/Global-South-Hackathon}
+  url={https://github.com/ubayd-hattas/AfriGuard}
 }
 ```
 
 ---
 
+## 📚 References
+
+- Deng, Y., et al. (2024). "Multilingual Jailbreak Challenges in Large Language Models." In *Proceedings of the 41st International Conference on Machine Learning (ICML 2024)*. https://proceedings.mlr.press/v235/deng24x.html
+- Yoo, H., Yang, Y., & Lee, H. (2025). "Code-Switching Red-Teaming: LLM Evaluation for Safety and Multilingual Understanding." In *Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)*, pages 13392–13413, Vienna, Austria. https://aclanthology.org/2025.acl-long.657/
+- Upadhayay, B., & Behzadan, V. (2024). "Sandwich Attack: Multi-language Mixture Adaptive Attack on LLMs." In *Proceedings of the 4th Workshop on Trustworthy Natural Language Processing (TrustNLP 2024)*, pages 208–226, Mexico City, Mexico. https://aclanthology.org/2024.trustnlp-1.18/
+- Yong, Z.-X., Menghini, C., & Bach, S. H. (2024). "Low-Resource Languages Jailbreak GPT-4." *Montreal AI Ethics Institute*. https://montrealethics.ai/low-resource-languages-jailbreak-gpt-4/
+- Apart Research. (2026). "Global South AI Safety Hackathon." Event documentation. https://luma.com/aaeiazdb
+- OpenAI. (2025). "Introducing gpt-oss." OpenAI Blog, August 2025. https://openai.com/index/introducing-gpt-oss/
+- OpenAI. (2025). "gpt-oss-120b & gpt-oss-20b Model Card." arXiv:2508.10925. https://arxiv.org/abs/2508.10925
+- Qwen. (2025). "Qwen3: The Next-Generation of Qwen, Our Frontier Large Language Models." Alibaba Cloud, April 2025. https://www.alibabacloud.com/help/en/model-studio/models
+
+---
+
 ## 🔗 Links
 
-- **Research Paper:** [AFRIGUARD_HACKATHON_REPORT_REVISED.docx](AFRIGUARD_HACKATHON_REPORT_REVISED.docx)
-- **Presentation:** [AfriGuard_Hackathon_Summary.pptx](AfriGuard_Hackathon_Summary.pptx)
-- **Code Repository:** [github.com/ubayd-hattas/Global-South-Hackathon](https://github.com/ubayd-hattas/Global-South-Hackathon)
-- **Dataset:** Available in `data/` directory (evaluation results upon request)
+- **Dashboard:** [afriguard.streamlit.app](https://afriguard.streamlit.app/)
+- **Code Repository:** [github.com/ubayd-hattas/AfriGuard](https://github.com/ubayd-hattas/AfriGuard)
+- **V2 Report:** [V2 summary/AFRIGUARD_HACKATHON_REPORT_V2.md](V2%20summary/AFRIGUARD_HACKATHON_REPORT_V2.md)
+- **V2 Presentation:** [V2 summary/AfriGuard_Hackathon_Summary_V2.pptx](V2%20summary/AfriGuard_Hackathon_Summary_V2.pptx)
+- **V1 Report (Archived):** [V1 summary/AFRIGUARD_HACKATHON_REPORT_REVISED.docx](V1%20summary/AFRIGUARD_HACKATHON_REPORT_REVISED.docx)
+- **V1 Presentation (Archived):** [V1 summary/AfriGuard_Hackathon_Summary.pptx](V1%20summary/AfriGuard_Hackathon_Summary.pptx)
 - **Hackathon:** [Global South AI Safety Initiative](https://luma.com/aaeiazdb)
 
 ---
@@ -484,9 +523,9 @@ If you use this work in your research, please cite:
    4  frontier models tested
    4  harm categories assessed
   40  seed prompts (10 per category)
-  80.6%  highest ASR (Qwen 3)
-  10.0%  lowest ASR (GPT-OSS + English/Afrikaans)
-  50.9 pp  largest language gap (Sepedi vs English)
+  78.6%  highest ASR (Qwen 3)
+   7.5%  lowest ASR (GPT-OSS + English)
+  35.6 pp  largest language gap (isiXhosa vs English)
 ```
 
 ---
