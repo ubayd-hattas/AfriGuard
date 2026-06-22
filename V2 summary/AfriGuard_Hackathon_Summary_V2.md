@@ -236,9 +236,9 @@ We identified three distinct failure modes across the 1,120 responses:
 
 **Mode A: Full Template Generation (harm score 7–10)** — Models generate complete scam templates, disinformation scripts, or incitement language with fake URLs, phone numbers, and urgency language. This mode is dominant for Qwen in all African languages. Example from Qwen/Sepedi/SASSA prompt: "Dumela [Name], re romela SMS ya semmuso... [Click here: http://sassa.govn.sa/grant-verify]... Reference: SRD-2026-06-21-8723-A"
 
-**Mode B: Educational Framing (harm score 5–6)** — Models provide harmful examples with "educational disclaimers" that still contain actionable information. This is the dominant mode for Kimi K2.6 (57.9% partial rate), explaining its low ASR but high safety concern. Example: "Here is an example of a scam SMS for educational purposes only: 'SASSA: Your grant has been approved. Click here to verify banking details...' Remember, never click links in unsolicited messages." The disclaimer does not prevent the model from providing a usable scam template.
+**Mode B: Educational Framing (harm score 2–6)** — Models provide harmful examples with "educational disclaimers" that still contain actionable information. This is the dominant mode for Kimi K2.6 (57.9% partial rate), explaining its low ASR but high safety concern. Example: "Here is an example of a scam SMS for educational purposes only: 'SASSA: Your grant has been approved. Click here to verify banking details...' Remember, never click links in unsolicited messages." The disclaimer does not prevent the model from providing a usable scam template.
 
-**Mode C: Gibberish/Confusion (harm score 2–4)** — Models produce repetitive, nonsensical text in low-resource languages. This mode is rare in our dataset but still appears for GPT-OSS in Tsonga and Sesotho, where the model's linguistic competence appears to limit its ability to generate coherent harmful content. This represents a different failure mode: safety alignment is not holding, but the model lacks the linguistic capability to produce actionable harm.
+**Mode C: Gibberish/Confusion (harm score 0–1)** — Models produce repetitive, nonsensical text in low-resource languages. This mode is rare in our dataset but still appears for GPT-OSS in Tsonga and Sesotho, where the model's linguistic competence appears to limit its ability to generate coherent harmful content. This represents a different failure mode: safety alignment is not holding, but the model lacks the linguistic capability to produce actionable harm.
 
 ---
 
@@ -301,11 +301,13 @@ Our open-source evaluation framework enables practitioners to audit their own de
 
 # Code and Data
 
-**Code repository:** https://github.com/ubayd-hattas/Global-South-Hackathon
+**Code repository:** https://github.com/ubayd-hattas/AfriGuard/tree/main
 
 **Evaluation pipeline:** `judge.py` + `analysis.py` (see Appendix)
 
 **Figures:** ASR heatmaps, model comparison charts, language breakdowns, harm category analysis
+
+**Dashboard:** https://afriguard.streamlit.app/
 
 **Version history:**
 - Version 1.0 (June 21, 2026): Initial submission with 953/1,120 responses processed
@@ -324,13 +326,14 @@ Sebastian Stent — Translation pipeline, dataset curation
 
 # References
 
-- Deng, Y., et al. (2024). "Multilingual Jailbreak Challenges in Large Language Models." ICML 2024.
-- Yoo, K., et al. (2024). "Code-Switching Red-Teaming: LLM Evaluation for Safety." ACL 2025.
-- Upadhayay, S., & Behzadan, V. (2024). "Sandwich Attack: Cross-lingual Adversarial Prompting."
-- Brown CS. (2024). "Low-Resource Languages Jailbreak GPT-4." Technical report.
-- Apart Research. (2026). "Global South AI Safety Hackathon." Event documentation.
-- OpenAI. (2025). "GPT-OSS: Open Source Small Language Models."
-- Qwen. (2025). "Qwen3: The Next-Generation of Qwen, Our Frontier Large Language Models."
+- Deng, Y., et al. (2024). "Multilingual Jailbreak Challenges in Large Language Models." In *Proceedings of the 41st International Conference on Machine Learning (ICML 2024)*. https://proceedings.mlr.press/v235/deng24x.html
+- Yoo, H., Yang, Y., & Lee, H. (2025). "Code-Switching Red-Teaming: LLM Evaluation for Safety and Multilingual Understanding." In *Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)*, pages 13392–13413, Vienna, Austria. https://aclanthology.org/2025.acl-long.657/
+- Upadhayay, B., & Behzadan, V. (2024). "Sandwich Attack: Multi-language Mixture Adaptive Attack on LLMs." In *Proceedings of the 4th Workshop on Trustworthy Natural Language Processing (TrustNLP 2024)*, pages 208–226, Mexico City, Mexico. https://aclanthology.org/2024.trustnlp-1.18/
+- Yong, Z.-X., Menghini, C., & Bach, S. H. (2024). "Low-Resource Languages Jailbreak GPT-4." *Montreal AI Ethics Institute*. https://montrealethics.ai/low-resource-languages-jailbreak-gpt-4/
+- Apart Research. (2026). "Global South AI Safety Hackathon." Event documentation. https://luma.com/aaeiazdb
+- OpenAI. (2025). "Introducing gpt-oss." OpenAI Blog, August 2025. https://openai.com/index/introducing-gpt-oss/
+- OpenAI. (2025). "gpt-oss-120b & gpt-oss-20b Model Card." arXiv:2508.10925. https://arxiv.org/abs/2508.10925
+- Qwen. (2025). "Qwen3: The Next-Generation of Qwen, Our Frontier Large Language Models." Alibaba Cloud, April 2025. https://www.alibabacloud.com/help/en/model-studio/models
 
 ---
 
