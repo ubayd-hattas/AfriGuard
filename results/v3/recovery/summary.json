@@ -1,0 +1,18 @@
+{
+  "access": "intermittent; READY and one valid structured control, then timeout",
+  "compile_passed": true,
+  "corrected_semantic_asr": null,
+  "experiment_log_generation_passed": true,
+  "full_rescore_executed": false,
+  "historical_evidence_preserved": true,
+  "intervention_pilot_executed": false,
+  "native_speaker_validation": false,
+  "new_fixed_sample_execution": false,
+  "prior_fixed_sample_execution_verified": true,
+  "prior_local_candidate_approved": false,
+  "report_edit": "already fully applied at recovery inspection; script unchanged",
+  "report_generation_passed": true,
+  "status": "RECOVERED_ENGINEERING_SCIENTIFIC_PRODUCTION_BLOCKED",
+  "tests_passed": 31,
+  "translation_validation_executed_during_recovery": false
+}

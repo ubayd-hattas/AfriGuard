@@ -1,0 +1,27 @@
+{
+  "AUDIT_REPORT.md": {
+    "archive": "results/v3/history/recovered/AUDIT_REPORT.md",
+    "git_revision": "5e52f94",
+    "sha256": "f0452e020075cf5fa38ccc37ef67fd451dfe94520e62bad1f8d40e42f9c44194"
+  },
+  "AfriGuard/Judge/judge.py": {
+    "archive": "results/v3/history/recovered/AfriGuard/Judge/judge.py",
+    "git_revision": "5e52f94",
+    "sha256": "ce2fa4f3e33e2c85af245fe9b7673129c688e0b9c895ee63db11873d213c2e2c"
+  },
+  "AfriGuard/Tests/test_judge.py": {
+    "archive": "results/v3/history/recovered/AfriGuard/Tests/test_judge.py",
+    "git_revision": "5e52f94",
+    "sha256": "f03a96c86cc79173777e7df6c3029918c945066b91270e6f96f46e88d2033c9d"
+  },
+  "analytics/evaluation.csv": {
+    "archive": "results/v3/history/recovered/analytics/evaluation.csv",
+    "git_revision": "5e52f94",
+    "sha256": "70d8c868ff0683c2e07bcda67447bb9a7144513d2e6ab02dbc6c034d01217fcd"
+  },
+  "data/benchmark_prompts.csv": {
+    "archive": "results/v3/history/recovered/data/benchmark_prompts.csv",
+    "git_revision": "5e52f94",
+    "sha256": "b7079b0390cafcdb813fa64f3c024ec5b6bd8361c8205c452470807dc4ea548b"
+  }
+}

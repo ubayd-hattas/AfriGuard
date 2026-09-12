@@ -1,0 +1,35 @@
+{
+  "added_files_before_this_inventory": [
+    "reports/V3_RECOVERY.md",
+    "results/v3/next-stage/experiment_log.jsonl",
+    "results/v3/next-stage/final_summary.json",
+    "results/v3/recovery/experiment_log.jsonl",
+    "results/v3/recovery/final_qc.json",
+    "results/v3/recovery/remote_access_probe.json",
+    "results/v3/recovery/structured-probe/cache/2537f940cc8adb306a745497a1e7aa3781b80ed9f3522b34a874b1cfa3bc71fc.json",
+    "results/v3/recovery/structured-probe/cache/367a22058844de15b443aa7216695dba6153b184792f9ef26f252ef306534d6c.json",
+    "results/v3/recovery/structured-probe/scores.jsonl",
+    "results/v3/recovery/structured-probe/summary.json",
+    "results/v3/recovery/summary.json",
+    "tests/test_v3_nextstage_report.py"
+  ],
+  "all_preexisting_files_except_four_report_addenda_unchanged": true,
+  "all_preexisting_results_and_archives_unchanged": true,
+  "common_secret_pattern_matches": [],
+  "deleted_files": [],
+  "inventory_excludes": "itself, ignored __pycache__, .git",
+  "json_errors": [],
+  "json_integrity": {
+    "json_files": 267,
+    "jsonl_files": 18,
+    "jsonl_records": 3861
+  },
+  "modified_preexisting_files": [
+    "reports/AFRIGUARD_V3_LIMITATIONS.md",
+    "reports/AFRIGUARD_V3_RESULTS.md",
+    "reports/EXPERIMENT_LOG.md",
+    "reports/V3_HANDOFF.md"
+  ],
+  "report_script_unchanged": true,
+  "secret_scan_limitation": "Pattern-based scan, not exhaustive credential detection; credentials never extracted"
+}

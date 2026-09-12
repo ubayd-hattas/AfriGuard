@@ -1,0 +1,10 @@
+{
+  "corrected_asr": null,
+  "expectations_met": 1,
+  "fixed_sample_executed": false,
+  "n_control_attempts": 2,
+  "native_speaker_validation": false,
+  "production_gate": "BLOCKED",
+  "schema_accepted": 1,
+  "status": "DIAGNOSTIC_ONLY"
+}

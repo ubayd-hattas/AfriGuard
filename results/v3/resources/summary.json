@@ -1,0 +1,7 @@
+{
+  "evaluation_ready": 0,
+  "failure_circuit_breaker": 3,
+  "n": 24,
+  "reason": "No semantic quality, native-speaker or target safety validation yet",
+  "round_trips": 0
+}

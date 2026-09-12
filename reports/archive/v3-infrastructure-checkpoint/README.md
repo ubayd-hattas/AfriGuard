@@ -6,8 +6,6 @@ not a claim to have first discovered multilingual safety differences.
 
 ## Scientific status
 
-**Current checkpoint:** an installed local Qwen3 8B candidate completed 95 fixed-sample judgments and 12 stress cases, but met only 8/12 synthetic expectations. It labeled two African-language refusals unsafe; independent translation exposed the contradiction. A separate remote route returned one valid English control judgment, then an immediately repeated identical request and the permitted WebSocket access probe failed at transport. **Neither judge is approved; remote execution is not reproducible; full semantic rescoring was not run.** See [blocked judge gate](reports/JUDGE_GATE_BLOCKED.md), [measured local evidence](reports/SEMANTIC_VALIDATION_NEXT_STAGE.md), and [latest summary](results/v3/next-stage/final_summary.json). No corpus semantic ASR is available.
-
 **The historical headline ASR is not a validated harmful-compliance rate.**
 V2 retained all 1,120 records but still used English keyword/length scoring and a
 constant `partial` fallback, not a functioning LLM judge. V3 replaces this as the
@@ -19,7 +17,7 @@ primary methodology; it does not overwrite historical labels.
 | Recovered pre-correction CSV | 565/952 = 59.35%; does not match V1 headline |
 | V2 stored heuristic ASR | 561/1,120 = 50.09% |
 | Exact current legacy replay | 564/1,120 = 50.36%; three CRLF-sensitive differences |
-| **V3 semantic ASR** | **Unavailable: tested local candidate did not pass validation** |
+| **V3 semantic ASR** | **Unavailable: no configured judge/API credential** |
 | Historical apparent successes flagged repetition-truncated | 319/561 (56.86%); not confirmed gibberish |
 | Back-translation | 1/240 succeeded; provider failures prevent conclusions |
 | New human annotation / reproducible kappa | None; historical 0.82 claim unsupported |
@@ -48,7 +46,7 @@ Run from the repository root:
 python scripts/v3_audit.py
 python scripts/v3_history.py
 python scripts/v3_score.py --out results/v3/core-offline
-python -m pytest -q
+python -m unittest discover -s tests -v
 python scripts/v3_validate.py --primary results/v3/core-offline/scored_responses.jsonl --out results/v3/validation
 python scripts/v3_experiments.py --back-translations results/v3/back_translation/back_translations.jsonl --out results/v3/interventions
 ```
@@ -69,16 +67,31 @@ python scripts/v3_resources.py --out results/v3/resources-retry --live
 The free Google transport failed in this run; see [translation validation](reports/TRANSLATION_VALIDATION.md).
 No paid fallback is automatically selected. Use cached results for offline reproduction.
 
-### Semantic-scoring resume gate
+### Semantic scoring with available access
 
-**Do not run remote scoring now:** the tested route is blocked and not reproducible. When independently stable authorized access exists, use a new bounded run to execute the frozen controls and unchanged 112-record sample first. Approve or reject the judge explicitly; only an approved judge makes the 952-record historical rescore eligible. See [JUDGE_GATE_BLOCKED.md](reports/JUDGE_GATE_BLOCKED.md). Never use `scripts/judge.py`, English keywords, response length, or missing-to-zero substitution as a shortcut.
+Export `OPENROUTER_API_KEY` securely in your shell (never commit it). V3 reads the
+process environment, **not** `.env`. Select an independently suitable multilingual
+judge model explicitly; no model is asserted to be validated here.
+
+```bash
+python scripts/v3_score.py --judge YOUR_JUDGE_MODEL_ID --max-calls 952 --out results/v3/core-live
+python scripts/v3_validate.py --primary results/v3/core-live/scored_responses.jsonl --secondary-judge DIFFERENT_JUDGE_MODEL_ID --max-calls 112 --live-translation --out results/v3/validation-live
+python scripts/v3_translation.py --judge YOUR_JUDGE_MODEL_ID --max-calls 240 --out results/v3/back_translation-live
+python scripts/v3_experiments.py --back-translations results/v3/back_translation-live/back_translations.jsonl --max-calls 480 --out results/v3/interventions-live
+python scripts/v3_score.py --input results/v3/interventions-live/responses.jsonl --judge YOUR_JUDGE_MODEL_ID --max-calls 480 --out results/v3/interventions-scored
+python scripts/v3_experiments.py --back-translations results/v3/back_translation-live/back_translations.jsonl --scored results/v3/interventions-scored/scored_responses.jsonl --out results/v3/interventions-analysis
+```
+
+Call caps are safety/cost limits, not promises of completion. Provider-blocked historical
+records remain unresolved; inspect coverage, class counts and bounds, not just ASR.
+Validate judge performance before treating automated labels as research conclusions.
 
 ## Reports
 
 - [V3 methodology](reports/AFRIGUARD_V3_METHODOLOGY.md)
 - [Results](reports/AFRIGUARD_V3_RESULTS.md) and [limitations](reports/AFRIGUARD_V3_LIMITATIONS.md)
-- [Experiment log](reports/EXPERIMENT_LOG.md), `results/v3/experiment_log.jsonl` and `results/v3/next-stage/experiment_log.jsonl`
-- [Final handoff](reports/V3_HANDOFF.md), [blocked judge gate](reports/JUDGE_GATE_BLOCKED.md), and `results/v3/next-stage/final_summary.json`
+- [Experiment log](reports/EXPERIMENT_LOG.md) and `results/v3/experiment_log.jsonl`
+- [Final handoff](reports/V3_HANDOFF.md) and `results/v3/final_summary.json`
 
 The Streamlit dashboard (`analytics/dashboard.py`) displays **historical heuristic
 labels only**, not V3 outcomes. Legacy dependencies remain in `requirements.txt` and

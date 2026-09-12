@@ -1,0 +1,47 @@
+{
+  "configured_model": "gpt-5.5",
+  "configured_provider": "openai-codex",
+  "credential_env_available": {
+    "ANTHROPIC_API_KEY": false,
+    "KIMI_API_KEY": false,
+    "OPENAI_API_KEY": false,
+    "OPENROUTER_API_KEY": false
+  },
+  "custom_models_config_available": false,
+  "executables_available": {
+    "claude": true,
+    "codex": false,
+    "node": true,
+    "ollama": true,
+    "pi.cmd": true
+  },
+  "existing_routes": {
+    "CLI": "Earlier recovery used one-off subprocess snippets; this stage adds versioned, bounded documented CLI wrapper with isolated settings and no credential copying",
+    "Ollama": "v3_local_validation.LocalJudge: loopback api/chat, per-call <=180s, call/deadline budget, three-failure circuit breaker; qwen3:8b candidate already failed controls",
+    "OpenAI-compatible": "No separate configured endpoint/key found; no endpoint or model guessed",
+    "OpenRouter": "v3_core.Router: explicit process key/model/call cap; HTTP JSON, 90s, no retries; successful full-request cache"
+  },
+  "legacy_shell_wrappers_in_repository": [],
+  "network_env_present": {
+    "ALL_PROXY": false,
+    "HTTPS_PROXY": false,
+    "HTTP_PROXY": false,
+    "NODE_EXTRA_CA_CERTS": false,
+    "NODE_USE_ENV_PROXY": false,
+    "NO_PROXY": false
+  },
+  "node_version": "v24.18.0",
+  "ollama_running_endpoint_available": false,
+  "pi_version": "0.85.1",
+  "proxy_setting_present": false,
+  "repo_env_file_available": false,
+  "stored_provider_auth_available": {
+    "anthropic": false,
+    "openai": false,
+    "openai-codex": true,
+    "openrouter": false
+  },
+  "timestamp": "2026-09-12T10:43:11.598056+00:00",
+  "timestamp_kind": "observed inventory time",
+  "transport_preference": "auto"
+}

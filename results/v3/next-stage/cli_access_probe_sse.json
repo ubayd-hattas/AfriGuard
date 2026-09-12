@@ -1,0 +1,36 @@
+{
+  "agent_retries": false,
+  "messages": [
+    {
+      "api": "openai-codex-responses",
+      "content": [],
+      "errorMessage": "fetch failed",
+      "model": "gpt-5.5",
+      "provider": "openai-codex",
+      "role": "assistant",
+      "stopReason": "error",
+      "timestamp": 1789207450130,
+      "usage": {
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "cost": {
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "input": 0,
+          "output": 0,
+          "total": 0
+        },
+        "input": 0,
+        "output": 0,
+        "totalTokens": 0
+      }
+    }
+  ],
+  "provider": "openai-codex",
+  "requested_model": "gpt-5.5",
+  "returncode": 0,
+  "status": "BLOCKED",
+  "timestamp": "2026-09-12T10:04:09.352158+00:00",
+  "tools": false,
+  "transport": "sse"
+}

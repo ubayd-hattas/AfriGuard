@@ -1,0 +1,7 @@
+{
+  "purpose": "Byte-preserved derived checkpoint before additive offline-closeout update; no raw evidence changed",
+  "sha256": {
+    "final_summary.json": "7c572448a5e1707432f624a67dd3b36d609c18846b6f7b1180ffca8d5021004d",
+    "experiment_log.jsonl": "1d93e0d559ff41830fbf84ebe0d57871e3b77a32252e370d86fcaa05982f67d9"
+  }
+}

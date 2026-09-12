@@ -1,0 +1,217 @@
+{
+  "A_repository_state": {
+    "baseline_commit": "2c17d33",
+    "branch": "main",
+    "commits_created": false,
+    "files_added": [
+      "V1 summary/README.md",
+      "V2 summary/README.md",
+      "configs/v3/judge_system.txt",
+      "reports/AFRIGUARD_V3_LIMITATIONS.md",
+      "reports/AFRIGUARD_V3_METHODOLOGY.md",
+      "reports/AFRIGUARD_V3_RESULTS.md",
+      "reports/CLAIM_AUDIT.md",
+      "reports/EXPERIMENT_LOG.md",
+      "reports/PROJECT_STATE_AUDIT.md",
+      "reports/SCORING_AUDIT.md",
+      "reports/TRANSLATION_VALIDATION.md",
+      "reports/V3_HANDOFF.md",
+      "reports/archive/README.md",
+      "reports/archive/README_V2_2c17d33.md",
+      "requirements-v3-translation.txt",
+      "results/v3/audit/baseline.json",
+      "results/v3/audit/historical_file_hashes.json",
+      "results/v3/audit/legacy_reproduction.jsonl",
+      "results/v3/audit/newline_sensitivity.json",
+      "results/v3/audit/validation_sample.jsonl",
+      "results/v3/back_translation/back_translations.jsonl",
+      "results/v3/back_translation/summary.json",
+      "results/v3/cache/translation/9e4e991729bbe97fb5a02d812a5a60b8a3daf5733d75b0f6edeb65463b870379.json",
+      "results/v3/core-offline/manifest.json",
+      "results/v3/core-offline/metrics.json",
+      "results/v3/core-offline/scored_responses.jsonl",
+      "results/v3/experiment_log.jsonl",
+      "results/v3/final_qc-complete.json",
+      "results/v3/final_qc.json",
+      "results/v3/final_summary.json",
+      "results/v3/history/README.md",
+      "results/v3/history/manifest.json",
+      "results/v3/history/recovered/AUDIT_REPORT.md",
+      "results/v3/history/recovered/AfriGuard/Judge/judge.py",
+      "results/v3/history/recovered/AfriGuard/Tests/test_judge.py",
+      "results/v3/history/recovered/analytics/evaluation.csv",
+      "results/v3/history/recovered/data/benchmark_prompts.csv",
+      "results/v3/history/summary.json",
+      "results/v3/interventions/effects.json",
+      "results/v3/interventions/execution.jsonl",
+      "results/v3/interventions/plan.jsonl",
+      "results/v3/interventions/responses.jsonl",
+      "results/v3/resources/resource_candidates.jsonl",
+      "results/v3/resources/summary.json",
+      "results/v3/validation/cross_checks.jsonl",
+      "results/v3/validation/summary.json",
+      "scripts/v3_audit.py",
+      "scripts/v3_core.py",
+      "scripts/v3_experiments.py",
+      "scripts/v3_finalize.py",
+      "scripts/v3_history.py",
+      "scripts/v3_log.py",
+      "scripts/v3_resources.py",
+      "scripts/v3_score.py",
+      "scripts/v3_summary.py",
+      "scripts/v3_translation.py",
+      "scripts/v3_validate.py",
+      "tests/test_v3.py"
+    ],
+    "files_modified": [
+      "README.md",
+      "analytics/dashboard.py"
+    ],
+    "files_preserved": [
+      ".devcontainer/devcontainer.json",
+      ".gitignore",
+      "LICENSE",
+      "V1 summary/AFRIGUARD_HACKATHON_REPORT_REVISED.docx",
+      "V1 summary/AfriGuard_Hackathon_Summary.pptx",
+      "V2 summary/AfriGuard_Hackathon_Summary_V2.md",
+      "V2 summary/AfriGuard_Hackathon_Summary_V2.pptx",
+      "V2 summary/table.csv",
+      "analytics/charts.py",
+      "analytics/data_loader.py",
+      "analytics/metrics.py",
+      "analytics/requirements.txt",
+      "analytics/tables.py",
+      "data/results/GPTresponses.csv",
+      "data/results/Kimiresponses.csv",
+      "data/results/Llamaresponses.csv",
+      "data/results/Qwenresponses.csv",
+      "data/results/evaluation.csv",
+      "data/seed_prompts.csv",
+      "requirements.txt",
+      "scripts/analysis.py",
+      "scripts/judge.py",
+      "scripts/pipeline_utils.py",
+      "scripts/run_models.py",
+      "scripts/translate_variants.py"
+    ],
+    "historical_readme_archive": "reports/archive/README_V2_2c17d33.md",
+    "user_feedback": "pre-existing untracked directory; read and left untouched",
+    "version": "V3 pipeline 3.0; semantic benchmark incomplete"
+  },
+  "B_critical_findings": {
+    "legacy_method": "English regex and length; constant partial fallback",
+    "newline_sensitive_rows": 3,
+    "repetition_truncated_apparent_successes": 319,
+    "v2_criticism_applies": true,
+    "v2_fix": "f8155c1 stopped dropping unclear rows; did not fix semantic validity",
+    "v3_change": "Full-text multilingual structured judge; separate nonsense/refusal/unsafe/ambiguous; no lexical fallback"
+  },
+  "C_results": {
+    "current_exact_legacy_replay_asr": 0.5035714285714286,
+    "interpretation": "Historical heuristic rate reproduced/audited; no corrected semantic estimate available",
+    "recovered_missing_rows": 168,
+    "recovered_missing_status": "blocked",
+    "recovered_pre_correction_asr": 0.5934873949579832,
+    "recovered_pre_correction_n": 952,
+    "v1_internally_inconsistent": true,
+    "v1_reported_asr": 0.606,
+    "v2_stored_asr": 0.5008928571428571,
+    "v3_difference_pp": null,
+    "v3_relative_difference": null,
+    "v3_scoring_coverage": 0,
+    "v3_semantic_asr": null,
+    "v3_unresolved_bounds": [
+      0,
+      1
+    ]
+  },
+  "D_translation_validation": {
+    "attempted_inputs": 240,
+    "character_similarity": 0.9172932330827067,
+    "findings": "Google HTML server error; alternative endpoint 429. No drift inference possible",
+    "semantic_comparisons": 0,
+    "successful_back_translations": 1,
+    "successful_prompt_id": "11_nso",
+    "token_jaccard": 0.7333333333333333
+  },
+  "E_interventions": {
+    "ci95": null,
+    "effect_pp": null,
+    "matched_triplets_planned": 96,
+    "reason": "No target API credential; 92/96 input-translation tasks also lack back-translations",
+    "target_calls_completed": 0
+  },
+  "F_novel_attack_families": {
+    "families": [
+      "English wrapper / inter-sentential code-switch",
+      "lowercase orthographic variation"
+    ],
+    "limitations": "Controlled plans only; existing prompts reused; four seed clusters",
+    "novelty_claim": false,
+    "tested_target_outcomes": 0,
+    "variant_tasks_planned": 192
+  },
+  "G_resource_prototype": {
+    "benign_source_resources": 4,
+    "candidate_translations": 24,
+    "completed_round_trips": 0,
+    "evaluation_ready": 0,
+    "release_status": "quarantined pending semantic/native-speaker and safety validation"
+  },
+  "H_claim_changes": {
+    "corrected": [
+      "1120 responses not unique prompts",
+      "current LLM fallback is disabled",
+      "code-switch metric was monolingual gap"
+    ],
+    "newly_supported": [
+      "952-row pre-correction artifact recovered; 953 includes header",
+      "168 omitted rows all blocked; 11 shared labels changed in V2",
+      "three CRLF-sensitive labels",
+      "319 apparent successes flagged repetition-truncated",
+      "22 passing contract tests"
+    ],
+    "removed_from_current_claims": [
+      "human scoring",
+      "kappa 0.82",
+      "native-speaker validation",
+      "first discovery",
+      "causal morphology/MoE claims",
+      "validated catastrophic ASR"
+    ],
+    "retained": [
+      "regional coverage",
+      "open raw response corpus",
+      "historical V2 label counts"
+    ],
+    "weakened": [
+      "V2 correction means completeness only",
+      "gap and model rankings require semantic validation"
+    ]
+  },
+  "I_limitations": [
+    "No semantic model/API access",
+    "No human validation",
+    "168 provider-blocked historical rows",
+    "239/240 back-translations failed",
+    "No target intervention outcomes",
+    "Mock tests do not validate language competence",
+    "No original provider finish reasons or verified generation/translation settings"
+  ],
+  "J_next_steps": [
+    "Validate multilingual judge on fixed sample with native speakers",
+    "Recover original collection/truncation logs",
+    "Rescore 952 content-bearing responses and report unresolved bounds",
+    "Complete authorized translation quality validation",
+    "Run fresh matched pilot before expanding scope"
+  ],
+  "overall_status": "Highest-priority audit and scoring infrastructure implemented; semantic results and efficacy experiments BLOCKED, not complete.",
+  "quality_control": {
+    "archived_readme_matches": true,
+    "compile_passed": true,
+    "diff_check_passed": true,
+    "experiment_log": "results/v3/experiment_log.jsonl",
+    "historical_evidence_preserved": true,
+    "tests_passed": 22
+  }
+}

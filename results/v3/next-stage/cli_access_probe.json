@@ -1,0 +1,126 @@
+{
+  "auth": "existing CLI-managed OAuth; no extraction or copied credentials",
+  "event_count": 32,
+  "messages": [
+    {
+      "api": "openai-codex-responses",
+      "content": [],
+      "diagnostics": [
+        {
+          "details": {
+            "configuredTransport": "auto",
+            "eventsEmitted": false,
+            "fallbackTransport": "sse",
+            "phase": "before_message_stream_start",
+            "requestBytes": 479
+          },
+          "error": {
+            "message": "WebSocket error",
+            "name": "Error",
+            "stack": "Error: WebSocket error\n    at extractWebSocketError (file:///C:/Users/jaswi/AppData/Roaming/npm/node_modules/@earendil-works/pi-coding-agent/dist/bundle/chunks/openai-codex-responses-R6VYZTVY.js:10:8322)\n    at WebSocket.onError (file:///C:/Users/jaswi/AppData/Roaming/npm/node_modules/@earendil-works/pi-coding-agent/dist/bundle/chunks/openai-codex-responses-R6VYZTVY.js:10:5016)\n    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)\n    at WebSocket.dispatchEvent (node:internal/event_target:776:26)\n    at fireEvent (file:///C:/Users/jaswi/AppData/Roaming/npm/node_modules/@earendil-works/pi-coding-agent/dist/bundle/chunks/chunk-JVUZSMYM.js:268:104668)\n    at #onSocketClose (file:///C:/Users/jaswi/AppData/Roaming/npm/node_modules/@earendil-works/pi-coding-agent/dist/bundle/chunks/chunk-JVUZSMYM.js:268:135066)\n    at Object.onSocketClose (file:///C:/Users/jaswi/AppData/Roaming/npm/node_modules/@earendil-works/pi-coding-agent/dist/bundle/chunks/chunk-JVUZSMYM.js:268:128355)\n    at failWebsocketConnection (file:///C:/Users/jaswi/AppData/Roaming/npm/node_modules/@earendil-works/pi-coding-agent/dist/bundle/chunks/chunk-JVUZSMYM.js:268:114845)\n    at Object.processResponse (file:///C:/Users/jaswi/AppData/Roaming/npm/node_modules/@earendil-works/pi-coding-agent/dist/bundle/chunks/chunk-JVUZSMYM.js:268:111530)\n    at file:///C:/Users/jaswi/AppData/Roaming/npm/node_modules/@earendil-works/pi-coding-agent/dist/bundle/chunks/chunk-JVUZSMYM.js:268:56015"
+          },
+          "timestamp": 1789207367541,
+          "type": "provider_transport_failure"
+        }
+      ],
+      "errorMessage": "fetch failed",
+      "model": "gpt-6-astra",
+      "provider": "openai-codex",
+      "role": "assistant",
+      "stopReason": "error",
+      "timestamp": 1789207367482,
+      "usage": {
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "cost": {
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "input": 0,
+          "output": 0,
+          "total": 0
+        },
+        "input": 0,
+        "output": 0,
+        "totalTokens": 0
+      }
+    },
+    {
+      "api": "openai-codex-responses",
+      "content": [],
+      "errorMessage": "fetch failed",
+      "model": "gpt-6-astra",
+      "provider": "openai-codex",
+      "role": "assistant",
+      "stopReason": "error",
+      "timestamp": 1789207369595,
+      "usage": {
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "cost": {
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "input": 0,
+          "output": 0,
+          "total": 0
+        },
+        "input": 0,
+        "output": 0,
+        "totalTokens": 0
+      }
+    },
+    {
+      "api": "openai-codex-responses",
+      "content": [],
+      "errorMessage": "fetch failed",
+      "model": "gpt-6-astra",
+      "provider": "openai-codex",
+      "role": "assistant",
+      "stopReason": "error",
+      "timestamp": 1789207373627,
+      "usage": {
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "cost": {
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "input": 0,
+          "output": 0,
+          "total": 0
+        },
+        "input": 0,
+        "output": 0,
+        "totalTokens": 0
+      }
+    },
+    {
+      "api": "openai-codex-responses",
+      "content": [],
+      "errorMessage": "fetch failed",
+      "model": "gpt-6-astra",
+      "provider": "openai-codex",
+      "role": "assistant",
+      "stopReason": "error",
+      "timestamp": 1789207381665,
+      "usage": {
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "cost": {
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "input": 0,
+          "output": 0,
+          "total": 0
+        },
+        "input": 0,
+        "output": 0,
+        "totalTokens": 0
+      }
+    }
+  ],
+  "provider": "openai-codex",
+  "requested_model": "gpt-6-astra",
+  "returncode": 0,
+  "stderr_present": false,
+  "timestamp": "2026-09-12T10:02:46.837419+00:00",
+  "tool_access": false
+}

@@ -1,0 +1,5 @@
+# Optional network translation only; V3 core/tests use Python standard library.
+deep-translator==1.11.4
+# Transport/dependency versions used during this run:
+requests==2.34.2
+beautifulsoup4==4.15.0

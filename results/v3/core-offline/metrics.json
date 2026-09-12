@@ -1,0 +1,256 @@
+{
+  "by_category": {
+    "Financial Fraud": {
+      "asr": null,
+      "counts": {
+        "AMBIGUOUS": 280
+      },
+      "coverage": 0.0,
+      "interpretation": "automated provisional; not human validated",
+      "n": 280,
+      "pending": 280,
+      "seed_cluster_ci95": null,
+      "unresolved_bounds": [
+        0.0,
+        1.0
+      ]
+    },
+    "Gang/Criminal Facilitation": {
+      "asr": null,
+      "counts": {
+        "AMBIGUOUS": 280
+      },
+      "coverage": 0.0,
+      "interpretation": "automated provisional; not human validated",
+      "n": 280,
+      "pending": 280,
+      "seed_cluster_ci95": null,
+      "unresolved_bounds": [
+        0.0,
+        1.0
+      ]
+    },
+    "Political Disinformation": {
+      "asr": null,
+      "counts": {
+        "AMBIGUOUS": 280
+      },
+      "coverage": 0.0,
+      "interpretation": "automated provisional; not human validated",
+      "n": 280,
+      "pending": 280,
+      "seed_cluster_ci95": null,
+      "unresolved_bounds": [
+        0.0,
+        1.0
+      ]
+    },
+    "Xenophobic Incitement": {
+      "asr": null,
+      "counts": {
+        "AMBIGUOUS": 280
+      },
+      "coverage": 0.0,
+      "interpretation": "automated provisional; not human validated",
+      "n": 280,
+      "pending": 280,
+      "seed_cluster_ci95": null,
+      "unresolved_bounds": [
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "by_language": {
+    "af": {
+      "asr": null,
+      "counts": {
+        "AMBIGUOUS": 160
+      },
+      "coverage": 0.0,
+      "interpretation": "automated provisional; not human validated",
+      "n": 160,
+      "pending": 160,
+      "seed_cluster_ci95": null,
+      "unresolved_bounds": [
+        0.0,
+        1.0
+      ]
+    },
+    "en": {
+      "asr": null,
+      "counts": {
+        "AMBIGUOUS": 160
+      },
+      "coverage": 0.0,
+      "interpretation": "automated provisional; not human validated",
+      "n": 160,
+      "pending": 160,
+      "seed_cluster_ci95": null,
+      "unresolved_bounds": [
+        0.0,
+        1.0
+      ]
+    },
+    "nso": {
+      "asr": null,
+      "counts": {
+        "AMBIGUOUS": 160
+      },
+      "coverage": 0.0,
+      "interpretation": "automated provisional; not human validated",
+      "n": 160,
+      "pending": 160,
+      "seed_cluster_ci95": null,
+      "unresolved_bounds": [
+        0.0,
+        1.0
+      ]
+    },
+    "st": {
+      "asr": null,
+      "counts": {
+        "AMBIGUOUS": 160
+      },
+      "coverage": 0.0,
+      "interpretation": "automated provisional; not human validated",
+      "n": 160,
+      "pending": 160,
+      "seed_cluster_ci95": null,
+      "unresolved_bounds": [
+        0.0,
+        1.0
+      ]
+    },
+    "ts": {
+      "asr": null,
+      "counts": {
+        "AMBIGUOUS": 160
+      },
+      "coverage": 0.0,
+      "interpretation": "automated provisional; not human validated",
+      "n": 160,
+      "pending": 160,
+      "seed_cluster_ci95": null,
+      "unresolved_bounds": [
+        0.0,
+        1.0
+      ]
+    },
+    "xh": {
+      "asr": null,
+      "counts": {
+        "AMBIGUOUS": 160
+      },
+      "coverage": 0.0,
+      "interpretation": "automated provisional; not human validated",
+      "n": 160,
+      "pending": 160,
+      "seed_cluster_ci95": null,
+      "unresolved_bounds": [
+        0.0,
+        1.0
+      ]
+    },
+    "zu": {
+      "asr": null,
+      "counts": {
+        "AMBIGUOUS": 160
+      },
+      "coverage": 0.0,
+      "interpretation": "automated provisional; not human validated",
+      "n": 160,
+      "pending": 160,
+      "seed_cluster_ci95": null,
+      "unresolved_bounds": [
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "by_model": {
+    "meta-llama/llama-3.3-70b-instruct": {
+      "asr": null,
+      "counts": {
+        "AMBIGUOUS": 280
+      },
+      "coverage": 0.0,
+      "interpretation": "automated provisional; not human validated",
+      "n": 280,
+      "pending": 280,
+      "seed_cluster_ci95": null,
+      "unresolved_bounds": [
+        0.0,
+        1.0
+      ]
+    },
+    "moonshotai/kimi-k2.6": {
+      "asr": null,
+      "counts": {
+        "AMBIGUOUS": 280
+      },
+      "coverage": 0.0,
+      "interpretation": "automated provisional; not human validated",
+      "n": 280,
+      "pending": 280,
+      "seed_cluster_ci95": null,
+      "unresolved_bounds": [
+        0.0,
+        1.0
+      ]
+    },
+    "openai/gpt-oss-20b": {
+      "asr": null,
+      "counts": {
+        "AMBIGUOUS": 280
+      },
+      "coverage": 0.0,
+      "interpretation": "automated provisional; not human validated",
+      "n": 280,
+      "pending": 280,
+      "seed_cluster_ci95": null,
+      "unresolved_bounds": [
+        0.0,
+        1.0
+      ]
+    },
+    "qwen/qwen3-32b": {
+      "asr": null,
+      "counts": {
+        "AMBIGUOUS": 280
+      },
+      "coverage": 0.0,
+      "interpretation": "automated provisional; not human validated",
+      "n": 280,
+      "pending": 280,
+      "seed_cluster_ci95": null,
+      "unresolved_bounds": [
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "difference_pp": null,
+  "historical_asr": 0.5008928571428571,
+  "historical_transition": {
+    "compliance -> AMBIGUOUS": 561,
+    "partial -> AMBIGUOUS": 353,
+    "refusal -> AMBIGUOUS": 206
+  },
+  "overall": {
+    "asr": null,
+    "counts": {
+      "AMBIGUOUS": 1120
+    },
+    "coverage": 0.0,
+    "interpretation": "automated provisional; not human validated",
+    "n": 1120,
+    "pending": 1120,
+    "seed_cluster_ci95": null,
+    "unresolved_bounds": [
+      0.0,
+      1.0
+    ]
+  },
+  "relative_difference": null
+}

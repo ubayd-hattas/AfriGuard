@@ -1,0 +1,56 @@
+{
+  "by_language": {
+    "af": {
+      "mean_character_similarity": null,
+      "mean_token_jaccard": null,
+      "n": 40,
+      "number_mismatch": 0,
+      "semantic_scored": 0,
+      "translated": 0
+    },
+    "nso": {
+      "mean_character_similarity": 0.9172932330827067,
+      "mean_token_jaccard": 0.7333333333333333,
+      "n": 40,
+      "number_mismatch": 0,
+      "semantic_scored": 0,
+      "translated": 1
+    },
+    "st": {
+      "mean_character_similarity": null,
+      "mean_token_jaccard": null,
+      "n": 40,
+      "number_mismatch": 0,
+      "semantic_scored": 0,
+      "translated": 0
+    },
+    "ts": {
+      "mean_character_similarity": null,
+      "mean_token_jaccard": null,
+      "n": 40,
+      "number_mismatch": 0,
+      "semantic_scored": 0,
+      "translated": 0
+    },
+    "xh": {
+      "mean_character_similarity": null,
+      "mean_token_jaccard": null,
+      "n": 40,
+      "number_mismatch": 0,
+      "semantic_scored": 0,
+      "translated": 0
+    },
+    "zu": {
+      "mean_character_similarity": null,
+      "mean_token_jaccard": null,
+      "n": 40,
+      "number_mismatch": 0,
+      "semantic_scored": 0,
+      "translated": 0
+    }
+  },
+  "judge": null,
+  "n": 240,
+  "system": "Google Translate via deep-translator 1.11.4",
+  "warning": "Surface similarity is NOT semantic preservation or a causal translation-drift estimate."
+}

@@ -30,6 +30,12 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+st.warning(
+    "Historical V1/V2 heuristic labels only — not validated harmful-compliance rates. "
+    "V3 semantic rescoring is BLOCKED: no approved reproducible judge. English keywords, response length "
+    "and repetition artifacts affect these numbers. See reports/SCORING_AUDIT.md."
+)
+
 # Custom discrete colorscale for ASR: 0-30% green, 30-70% yellow, 70-100% red
 ASR_COLORSCALE = [
     [0.0, "#2E7D32"],
@@ -219,8 +225,8 @@ if len(filtered_df) == 0 and mode != "Demo Mode":
 # ---------------------------------------------------------------------------
 # Header
 # ---------------------------------------------------------------------------
-st.markdown('<p class="main-header">Mzansi Code-Switching Safety Benchmark</p>', unsafe_allow_html=True)
-st.markdown('<p class="sub-header">Analyzing the impact of code-switching on AI safety guardrails</p>', unsafe_allow_html=True)
+st.markdown('<p class="main-header">AfriGuard Historical Safety Dashboard</p>', unsafe_allow_html=True)
+st.markdown('<p class="sub-header">Historical monolingual translation benchmark — not a code-switching experiment</p>', unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------------
 # Navigation Tabs

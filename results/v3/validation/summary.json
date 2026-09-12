@@ -1,0 +1,8 @@
+{
+  "agreement": null,
+  "human_annotation": false,
+  "paired_n": 0,
+  "sample_n": 112,
+  "sampling": "one per model x language x category; seed 20260912",
+  "warning": "Automated cross-view agreement is not accuracy; translation may repair gibberish or erase harm. Disagreements require adjudication."
+}

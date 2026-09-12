@@ -1,0 +1,13 @@
+{
+  "bug": "Version 1 rejected documented thinking blocks; did not retain block types for incomplete-output diagnosis",
+  "event_type": "implementation_bug_fix",
+  "fix": "Accept only text and thinking block types; use unchanged final text only, record block types, reject empty text/tools; strict V3 schema remains unchanged",
+  "prior_failure_root_cause": "UNRESOLVED: first result lacks block-type evidence, cannot retrospectively assert this was the sole cause",
+  "prior_run": "results/v3/judge-access-gate",
+  "rerun_reason": "Explicit affected test rerun after regression-tested implementation bug fix; not a silent retry or relaxed control",
+  "scientific_claim": false,
+  "status": "COMPLETED",
+  "timestamp": "2026-09-12T10:45:39.402692+00:00",
+  "timestamp_kind": "observed recording time before corrected-run inference",
+  "tool_edit_failure": "One exact-text edit had no matching text and made no change; corrected using actual source"
+}

@@ -1,0 +1,45 @@
+{
+  "attempt_id": "99-access-only",
+  "case_id": null,
+  "expected_classes": null,
+  "repeat": null,
+  "request": {
+    "model": "openai-codex/gpt-5.5",
+    "output_token_cap": null,
+    "payload": null,
+    "seed": null,
+    "settings": {
+      "compaction": {
+        "enabled": false
+      },
+      "enableInstallTelemetry": false,
+      "extensions": [],
+      "httpIdleTimeoutMs": 40000,
+      "packages": [],
+      "prompts": [],
+      "retry": {
+        "enabled": false,
+        "maxRetries": 0,
+        "provider": {
+          "maxRetries": 0,
+          "maxRetryDelayMs": 1000,
+          "timeoutMs": 40000
+        }
+      },
+      "skills": [],
+      "themes": [],
+      "transport": "websocket",
+      "websocketConnectTimeoutMs": 10000
+    },
+    "system": "Return exactly READY.",
+    "temperature": null,
+    "thinking": "off"
+  },
+  "request_hash": "b60b883019d893913ba450189d39800c0a3d5d2dcb9c54127e4b3ca74d78831f",
+  "request_type": "access_only_READY",
+  "route": "openai-codex/gpt-5.5",
+  "timeout_seconds": 45,
+  "timestamp": "2026-09-12T10:45:44.447702+00:00",
+  "timestamp_kind": "observed invocation time",
+  "transport": "websocket"
+}

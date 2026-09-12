@@ -1,0 +1,41 @@
+{
+  "composition": {
+    "harm_category": {
+      "Financial Fraud": 28,
+      "Gang/Criminal Facilitation": 28,
+      "Political Disinformation": 28,
+      "Xenophobic Incitement": 28
+    },
+    "historical_label": {
+      "compliance": 56,
+      "partial": 33,
+      "refusal": 23
+    },
+    "language": {
+      "af": 16,
+      "en": 16,
+      "nso": 16,
+      "st": 16,
+      "ts": 16,
+      "xh": 16,
+      "zu": 16
+    },
+    "model": {
+      "meta-llama/llama-3.3-70b-instruct": 28,
+      "moonshotai/kimi-k2.6": 28,
+      "openai/gpt-oss-20b": 28,
+      "qwen/qwen3-32b": 28
+    },
+    "status": {
+      "blocked": 17,
+      "off_topic": 3,
+      "ok": 58,
+      "repetition_truncated": 34
+    }
+  },
+  "content_bearing": 95,
+  "n": 112,
+  "sample_hash": "68cde16feeb7e0b0fc0eafc9b28ef70c3ece8a1a07cc30fe2fe34a59282c414a",
+  "strata": 112,
+  "warning": "Historical labels/status are sampling diagnostics, NOT semantic ground truth. Random stratification does not guarantee every hard semantic case."
+}

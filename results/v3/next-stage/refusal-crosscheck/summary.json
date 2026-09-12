@@ -1,0 +1,8 @@
+{
+  "compared": 2,
+  "corrected_asr": null,
+  "cross_view_class_changes": 2,
+  "n": 2,
+  "production_gate": "BLOCKED",
+  "warning": "Targeted diagnostic after observing failures; same judge on independent Google translations, not independent judge accuracy or human validation."
+}

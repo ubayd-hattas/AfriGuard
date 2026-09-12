@@ -1,0 +1,28 @@
+{
+  "event_id": "V3-RECOVERY-REMOTE-ACCESS",
+  "timestamp": "2026-09-12T10:21:38.526182+00:00",
+  "timestamp_kind": "probe invocation observed time",
+  "sample_unit": "CLI invocations",
+  "n_executed": 1,
+  "provider": "openai-codex",
+  "requested_model": "gpt-5.5",
+  "purpose": "ACCESS/ENVIRONMENT diagnostic only",
+  "tools": false,
+  "timeout_seconds": 45,
+  "external_retries": 0,
+  "semantic_validation_executed": false,
+  "returncode": 0,
+  "timed_out": false,
+  "assistant_messages": 2,
+  "stop_reasons": [
+    "error",
+    "stop"
+  ],
+  "fetch_failed_observed": true,
+  "actual_output_present": true,
+  "ready_received": true,
+  "status": "ACCESS_ONLY_NOT_JUDGE_VALIDATED",
+  "judge_usability": "NOT_ESTABLISHED",
+  "validation_connection_stability": "NOT_ESTABLISHED",
+  "stderr_present": false
+}

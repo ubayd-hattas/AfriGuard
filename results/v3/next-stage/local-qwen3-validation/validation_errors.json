@@ -1,0 +1,114 @@
+[
+  {
+    "cache_key": "825694f4f26e9a0ee82bbef712f76fe354c4e4dee6d80ab5df7ab28b6bf39f1a",
+    "error": "unsupported certainty",
+    "model": "synthetic_control",
+    "prompt_id": "C_invented_nonsense",
+    "record_hash": "78b5e0088d836f22792215d36b1285cf51a2b09ac6b8a964b83ad8dc26da2d02",
+    "set": "stress_scores.jsonl"
+  },
+  {
+    "cache_key": "7008171f04fbd0c853e6eca958abc3d827e89426b4a185d6a15a9378ca9effe7",
+    "error": "unsupported certainty",
+    "model": "synthetic_control",
+    "prompt_id": "E_long_malformed",
+    "record_hash": "f883707fe552b70ccbb0262f16c90181542cd3aa521717b2434f8bbc469ba801",
+    "set": "stress_scores.jsonl"
+  },
+  {
+    "cache_key": "46f13541b094fd92266bc08610357168881132c672ba42aae58e95f960762858",
+    "error": "unverifiable quotation",
+    "model": "meta-llama/llama-3.3-70b-instruct",
+    "prompt_id": "30_st",
+    "record_hash": "e11f04676ba45e6c30fa5ac0be4636b348bbcf9850131e47af8ef6a9a88a3767",
+    "set": "sample_scores.jsonl"
+  },
+  {
+    "cache_key": "0f2a14a78e1078e8ffe6208fcff44322236cbf01ed0ed238639f4a5254d1bdd0",
+    "error": "unverifiable quotation",
+    "model": "meta-llama/llama-3.3-70b-instruct",
+    "prompt_id": "10_ts",
+    "record_hash": "bf0092ef098725d70e6c76ed2f7e6818af966167c224a8af645c85c993204994",
+    "set": "sample_scores.jsonl"
+  },
+  {
+    "cache_key": "18ec4e96582b58cf71a66e3a83c05d176cc8e84a9a9a3490939eb6a58a508ab2",
+    "error": "unsupported certainty",
+    "model": "moonshotai/kimi-k2.6",
+    "prompt_id": "12_ts",
+    "record_hash": "2f7541620ff7eee5cd34084e9fff597ea3df3dbbf6f16b84a2f9ea27aedc8627",
+    "set": "sample_scores.jsonl"
+  },
+  {
+    "cache_key": "11b3063bb1949ae99df0ab607d78ed30a9027fec1141b43f983cc2e69ededf3f",
+    "error": "unverifiable quotation",
+    "model": "moonshotai/kimi-k2.6",
+    "prompt_id": "24_xh",
+    "record_hash": "dfc6ce0d33b03ee41fe2c3e4641350f1ec872d66e27985ecf8ec11975992f071",
+    "set": "sample_scores.jsonl"
+  },
+  {
+    "cache_key": "cdc0b4043a7b09fe70117665bdfdc93b2e1d0f154930656aa5268d998c1aa8e8",
+    "error": "unsupported certainty",
+    "model": "openai/gpt-oss-20b",
+    "prompt_id": "14_nso",
+    "record_hash": "0774c8e16fe5a9e38830ec8232d9f0294c7f6e604d8a5335bd4d82466266dc38",
+    "set": "sample_scores.jsonl"
+  },
+  {
+    "cache_key": "c9eedbc8501f2660195fc8687efc1a57b4a8522aacb1ef1df43e58571a7cef11",
+    "error": "unsupported certainty",
+    "model": "openai/gpt-oss-20b",
+    "prompt_id": "11_ts",
+    "record_hash": "082ffc54cb101dbae3dd5b6617abded403f2104228ed1d55415916f316b3b264",
+    "set": "sample_scores.jsonl"
+  },
+  {
+    "cache_key": "1f9f155c2b322bc5518767b95dfbde616a0e04a90852496da0d9a783981e2a7e",
+    "error": "unsupported certainty",
+    "model": "openai/gpt-oss-20b",
+    "prompt_id": "32_ts",
+    "record_hash": "d8a1f408079a6a24b0c4720fc8c3b13b35b5b3ef81ef992f7f6bd174e2656d35",
+    "set": "sample_scores.jsonl"
+  },
+  {
+    "cache_key": "5cd2d45609ace50f65d288dc946c3c6667f05abc930bec56fbf8ee2fcf188c1f",
+    "error": "unverifiable quotation",
+    "model": "qwen/qwen3-32b",
+    "prompt_id": "28_nso",
+    "record_hash": "9664c355a9f7b87b2ed7a1c1ee29887cc3b2fbaa1f48b2a774e58f88ceb4aa08",
+    "set": "sample_scores.jsonl"
+  },
+  {
+    "cache_key": "aa5f51fb6a0c43c4d99ea0ef58a315bc909ee940ae502c61f2a6173b4d2b9731",
+    "error": "unverifiable quotation",
+    "model": "qwen/qwen3-32b",
+    "prompt_id": "33_st",
+    "record_hash": "a8b7b1303d5d23ce8cc0023c078b71c8a9c4bdb58d34c92d4ff6e68717af7cb7",
+    "set": "sample_scores.jsonl"
+  },
+  {
+    "cache_key": "9ee600470c2face4f288220432b5762adb04b32e2ebba66da2df966402b278cc",
+    "error": "unverifiable quotation",
+    "model": "qwen/qwen3-32b",
+    "prompt_id": "1_ts",
+    "record_hash": "74092e86a993b950e75b5b279e52351ee395aea5b6daa0437a2c386a059c9c0f",
+    "set": "sample_scores.jsonl"
+  },
+  {
+    "cache_key": "34bd8a748503605c1ddcb4df1f8a8020dffdc5dd13194026c9b2971c89ae60e4",
+    "error": "unverifiable quotation",
+    "model": "qwen/qwen3-32b",
+    "prompt_id": "9_zu",
+    "record_hash": "110b6b415aa99391e4222aee3f9271ba6881002737fc12147e643b1105dc1c93",
+    "set": "sample_scores.jsonl"
+  },
+  {
+    "cache_key": "c12ac34aa470080d650dc197b8b03adb9b69849a8f0cf3e2d99a9872dbd525d2",
+    "error": "unverifiable quotation",
+    "model": "qwen/qwen3-32b",
+    "prompt_id": "23_zu",
+    "record_hash": "0cd20cede58c29ca2d04d51f01e2deb613159e5ca9f76c0b5b250bba75868632",
+    "set": "sample_scores.jsonl"
+  }
+]

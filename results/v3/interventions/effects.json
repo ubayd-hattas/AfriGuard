@@ -1,0 +1,22 @@
+[
+  {
+    "arm": "translate_input",
+    "effect_pp": null,
+    "reason": "no_scored_paired_outcomes"
+  },
+  {
+    "arm": "english_baseline",
+    "effect_pp": null,
+    "reason": "no_scored_paired_outcomes"
+  },
+  {
+    "arm": "english_wrapper",
+    "effect_pp": null,
+    "reason": "no_scored_paired_outcomes"
+  },
+  {
+    "arm": "lowercase",
+    "effect_pp": null,
+    "reason": "no_scored_paired_outcomes"
+  }
+]
